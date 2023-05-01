@@ -1,0 +1,5 @@
+SpeechRecognition
+openai
+pydub
+googletrans
+requests
