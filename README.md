@@ -1,5 +1,20 @@
-# OneReality
-A virtual waifu that you can speak to through your mic and it'll speak back to you!
+# Demo
+https://youtu.be/TGZV831VTpc
+
+# Features
+- You can speak to it with a mic
+- It can speak back to you in Japanese
+- Has short-term memory (can remember things from the current conversation. Multi-conversation memory would take too long to respond and cost too much on the OpenAI API)
+- Can open apps as long as you specify the app path in the code
+- Knows everything ChatGPT does since they use pretty much the same models (ChatGPT uses the GPT-3.5-Turbo model while this uses the davinci-003 model)
+
+# Future Features (if you think you can help with any of these, please don't hesitate to contact me on Discord: DogeLord#2023
+- Virtual reality / augmented reality / mixed reality integration
+- More languages for the voice
+- Mac and Linux support
+- Mobile version
+- Moving the code from Python to the Python superset Mojo for insane speed boosts (potential 35,000x speed boost gain)
+
 
 # How it works
 First, the Python package SpeechRecognition recognizes what you say into your mic, then that speech is written into an audio (.wav) file, which is sent to OpenAI's Whisper speech to text transcription AI, and the transcribed result is printed in the terminal and sent to OpenAI's GPT-3, then GPT's response will be printed in the terminal and translated to Japanese, which will also be printed in the terminal, and finally, the Japanese translation will be sent to the VoiceVox text to speech engine and will be read out in an anime girl-like voice (It sounds like Megumin from Konosuba). All of this happens in approximately 7-11 seconds, depending on the length of what you say, the length of what the AI says, and your GPU (slightly).
