@@ -1,4 +1,4 @@
-# Demo
+# Demo (with VTubeStudio lip synced to Megumin)
 https://youtu.be/TGZV831VTpc
 
 # Features
@@ -8,12 +8,14 @@ https://youtu.be/TGZV831VTpc
 - Can open apps as long as you specify the app path in the code
 - Knows everything ChatGPT does since they use pretty much the same models (ChatGPT uses the GPT-3.5-Turbo model while this uses the davinci-003 model)
 
-# Future Features (if you think you can help with any of these, please don't hesitate to contact me on Discord: DogeLord#2023
+# Future Features
+If you think you can help with any of these or make any other improvements, please don't hesitate to contact me on Discord: DogeLord#2023
 - Virtual reality / augmented reality / mixed reality integration
 - More languages for the voice
 - Mac and Linux support
 - Mobile version
-- Moving the code from Python to the Python superset Mojo for insane speed boosts (potential 35,000x speed boost gain)
+- Easier setup
+- Compiling into one exe
 
 
 # How it works
