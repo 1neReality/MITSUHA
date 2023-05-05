@@ -11,6 +11,7 @@ https://youtu.be/TGZV831VTpc
 # Future Features
 If you think you can help with any of these or make any other improvements, please don't hesitate to contact me on Discord: DogeLord#2023
 - Virtual reality / augmented reality / mixed reality integration
+- Making an Alexa type of thing with it, or possibly a hologram like Gatebox?
 - More languages for the voice
 - Mac and Linux support
 - Mobile version
