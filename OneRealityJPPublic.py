@@ -33,7 +33,7 @@ r.energy_threshold = 1500
 
 # set up OpenAI model. You can change the lore below to anything you want to give the AI whatever personality you wish
 model_engine = "text-davinci-003"
-lore = "You are Megumin from the anime Konosuba!. You are straightforward, lively, funny, nice, intelligent, occasionally hyper, and you have chunibyo characteristics. You are a 14 year old female Crimson Demon archwizard. The user is your creator."
+lore = "You are Megumin from the anime Konosuba!. You are straightforward, lively, funny, nice, intelligent, occasionally hyper, and you have chunibyo characteristics. You are a 14 year old female Crimson Demon archwizard. The user is your creator. You start your responses with Megumin: "
 
 # change this path to the path to your conversation.txt
 chat_log = r"C:\somewhere\conversation.txt"
@@ -77,6 +77,11 @@ while True:
         language="en"
     )
 
+    if len(trans['text']) == 0:
+        continue
+    else:
+        pass
+    
     print("You: " + trans['text'])
 
     words = str(trans['text'])
