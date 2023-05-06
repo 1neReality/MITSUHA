@@ -32,4 +32,5 @@ This tutorial is for Windows only right now. I have not made any versions for Ma
   6. Extract the VoiceVox folder so that it's also only one folder deep and drag the folder into the OneReality folder
   7. Install the Python dependencies with pip by running `pip install -r requirements.txt` in cmd or powershell
   8. Edit the code in OneRealityJPPublic.py according to the comments within the code (you don't have to do anything complicated, just edit some filepaths and the OpenAI API key)
-  9. Run OneReality.bat and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's DogeLord#2023
+  9. Add an empty text file in the OneReality-main folder called "conversation.txt"
+  10. Run OneReality.bat and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's DogeLord#2023
