@@ -37,5 +37,7 @@ This tutorial is for Windows only right now. I have not made any versions for Ma
 
 # Credits
 https://github.com/ardha27/AI-Waifu-Vtuber
+
 https://youtu.be/dKFnJCtcfMk
+
 https://github.com/VOICEVOX/voicevox_engine
