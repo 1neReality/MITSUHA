@@ -35,17 +35,17 @@ r.energy_threshold = 1500
 model_engine = "text-davinci-003"
 lore = "You are Megumin from the anime Konosuba!. You are straightforward, lively, funny, nice, intelligent, occasionally hyper, and you have chunibyo characteristics. You are a 14 year old female Crimson Demon archwizard. The user is your creator. You start your responses with Megumin: "
 
-# change this path to the path to your conversation.txt
+# make a file named conversation.txt somewhere and change this path to that
 chat_log = r"C:\somewhere\conversation.txt"
 
 with open(chat_log, "r") as c:
         conversation = c.read
 
-# define function to check if user has said "bye", "goodbye", or "see you"
-
 def play(bytesData):
         sound = pydub.AudioSegment.from_file_using_temporary_files(io.BytesIO(bytesData))
         pydub.playback.play(sound)
+
+# define function to check if user has said "bye", "goodbye", or "see you"
 
 def check_goodbye(transcript):
     goodbye_words = ["bye", "goodbye", "see you"]
@@ -57,7 +57,7 @@ def check_goodbye(transcript):
 while True:
     print("Speak now!")
     with mic as source:
-        audio = r.listen(source, timeout = 10)
+        audio = r.listen(source, timeout = None)
 
     test_text = r.recognize_sphinx(audio)
     if len(test_text) == 0:
@@ -92,55 +92,53 @@ while True:
     words = words.split()
 
 # change these paths to the exes for whatever apps you want the AI to be able to open on command. You can always add or remove as many apps as you need by simply deleting or adding lines
-    if len(words) > 0:
-        if (words[0] == "open" or words[0] == "start"):
-                app = words[1]
-                if app == "youtube":
-                        webbrowser.open("https://www.youtube.com/")
-                elif app == "brave":
-                        os.startfile(r"C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe")
-                elif app == "discord":
-                        os.startfile(r"C:\Users\danu0\AppData\Local\Discord\app-1.0.9012\Discord.exe")
-                elif app == "spotify":
-                        os.startfile(r"C:\Users\danu0\AppData\Roaming\Spotify\Spotify.exe")
-                elif app == "discord":
-                        os.startfile(r"C:\Windows\explorer.exe")
-                elif app == "epic games":
-                        os.startfile(r"C:\Program Files (x86)\Epic Games\Launcher\Portal\Binaries\Win32\EpicGamesLauncher.exe")
-                elif app == "tower of fantasy":
-                        os.startfile(r"C:\Tower Of Fantasy\Launcher\tof_launcher.exe")
-                elif app == "steam":
-                        os.startfile(r"C:\Program Files (x86)\Steam\steam.exe")
-                elif app == "minecraft":
-                        os.startfile(r"C:\Users\danu0\Downloads\MultiMC\MultiMC.exe")
-                elif app == "clip studio paint":
-                        os.startfile(r"C:\Program Files\CELSYS\CLIP STUDIO 1.5\CLIP STUDIO\CLIPStudio.exe")
-                elif app == "premiere pro":
-                        os.startfile(r"C:\Program Files\Adobe\Adobe Premiere Pro 2022\Adobe Premiere Pro.exe")
-                elif app == "media encoder":
-                        os.startfile(r"C:\Program Files\Adobe\Adobe Media Encoder 2022\Adobe Media Encoder.exe")
-                elif app == "photoshop":
-                        os.startfile(r"C:\Program Files\Adobe\Adobe Photoshop 2023\Photoshop.exe")
-                elif app == "audacity":
-                        os.startfile(r"C:\Program Files\Audacity\Audacity.exe")
-                elif app == "obs":
-                        os.chdir(r"C:\\Program Files\\obs-studio\\bin\\64bit\\")
-                        os.startfile(r"obs64.exe")
-                        os.chdir(r"C:\Users\danu0\Downloads\OneReality")
-                elif app == "vscode":
-                        os.startfile(r"C:\Program Files\VSCodium\VSCodium.exe")
-                elif app == "terminal":
-                        os.startfile(r"C:\Program Files\WindowsApps\Microsoft.WindowsTerminalPreview_1.17.10234.0_x64__8wekyb3d8bbwe\wt.exe")
-                elif app == "synapse":
-                        os.startfile(r"C:\Program Files (x86)\Razer\Synapse3\WPFUI\Framework\Razer Synapse 3 Host\Razer Synapse 3.exe")
-                elif app == "via":
-                        os.startfile(r"C:\Users\danu0\AppData\Local\Programs\via\VIA.exe")
-                else:
-                      pass
+    if any(word in ["open", "start"] for word in words):
+        word_index = words.index("open") if "open" in words else words.index("start")
+        app = words[word_index + 1]
+        if app == "youtube":
+                webbrowser.open("https://www.youtube.com/")
+        elif app == "brave":
+                os.startfile(r"C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe")
+        elif app == "discord":
+                os.startfile(r"C:\Users\danu0\AppData\Local\Discord\app-1.0.9013\Discord.exe")
+        elif app == "spotify":
+                os.startfile(r"C:\Users\danu0\AppData\Roaming\Spotify\Spotify.exe")
+        elif app == "discord":
+                os.startfile(r"C:\Windows\explorer.exe")
+        elif app == "epic games":
+                os.startfile(r"C:\Program Files (x86)\Epic Games\Launcher\Portal\Binaries\Win32\EpicGamesLauncher.exe")
+        elif app == "tower of fantasy":
+                os.startfile(r"C:\Tower Of Fantasy\Launcher\tof_launcher.exe")
+        elif app == "steam":
+                os.startfile(r"C:\Program Files (x86)\Steam\steam.exe")
+        elif app == "minecraft":
+                os.startfile(r"C:\Users\danu0\Downloads\MultiMC\MultiMC.exe")
+        elif app == "clip studio paint":
+                os.startfile(r"C:\Program Files\CELSYS\CLIP STUDIO 1.5\CLIP STUDIO\CLIPStudio.exe")
+        elif app == "premiere pro":
+                os.startfile(r"C:\Program Files\Adobe\Adobe Premiere Pro 2022\Adobe Premiere Pro.exe")
+        elif app == "media encoder":
+                os.startfile(r"C:\Program Files\Adobe\Adobe Media Encoder 2022\Adobe Media Encoder.exe")
+        elif app == "photoshop":
+                os.startfile(r"C:\Program Files\Adobe\Adobe Photoshop 2023\Photoshop.exe")
+        elif app == "audacity":
+                os.startfile(r"C:\Program Files\Audacity\Audacity.exe")
+        elif app == "obs":
+                os.chdir(r"C:\\Program Files\\obs-studio\\bin\\64bit\\")
+                os.startfile(r"obs64.exe")
+                os.chdir(r"C:\Users\danu0\Downloads\OneReality")
+        elif app == "vscode":
+                os.startfile(r"C:\Program Files\VSCodium\VSCodium.exe")
+        elif app == "terminal":
+                os.startfile(r"C:\Program Files\WindowsApps\Microsoft.WindowsTerminalPreview_1.17.10234.0_x64__8wekyb3d8bbwe\wt.exe")
+        elif app == "synapse":
+                os.startfile(r"C:\Program Files (x86)\Razer\Synapse3\WPFUI\Framework\Razer Synapse 3 Host\Razer Synapse 3.exe")
+        elif app == "via":
+                os.startfile(r"C:\Users\danu0\AppData\Local\Programs\via\VIA.exe")
         else:
                 pass
     else:
-        continue
+          pass
     
     if check_goodbye(trans['text']):
         c = open(chat_log, "r")
@@ -177,9 +175,7 @@ while True:
         with open("output.wav", "wb") as outfile:
             outfile.write(request.content)
 
-        is_Speaking = True
         winsound.PlaySound("output.wav", winsound.SND_FILENAME)
-        is_Speaking = False
 
         open(chat_log, "w").close()
         break
@@ -218,6 +214,4 @@ while True:
         with open("output.wav", "wb") as outfile:
                 outfile.write(request.content)
 
-        is_Speaking = True
         winsound.PlaySound("output.wav", winsound.SND_FILENAME)
-        is_Speaking = False
