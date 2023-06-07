@@ -34,6 +34,7 @@ This tutorial is for Windows only right now. I have not made any versions for Ma
   8. Edit the code in OneRealityJPPublic.py according to the comments within the code (you don't have to do anything complicated, just edit some filepaths and the OpenAI API key)
   9. Add an empty text file in the OneReality-main folder called "conversation.txt"
   10. Run OneReality.bat and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's DogeLord#2023
+  11. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically clears the conversation.txt. If you don't, it's fine you can just manually delete everything in the file
 
 # Credits
 https://github.com/ardha27/AI-Waifu-Vtuber
