@@ -29,7 +29,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
  3. [Download the latest release](https://github.com/DogeLord081/OneReality/releases/latest)
  4. [Download VoiceVox Engine](https://github.com/VOICEVOX/voicevox_engine/releases/latest), if you're using an Nvidia GPU like me, click Windows（GPU/CUDA版)
   5. Extract the OneReality-main folder so that it is only one folder deep
-  6. Extract the VoiceVox folder so that it's also only one folder deep and drag the folder into the OneReality folder
+  6. [Install 7zip](https://www.7-zip.org/download.html) and extract the VoiceVox folder so that it's also only one folder deep and drag the folder into the OneReality folder
   7. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
   8. Edit the code in OneRealityJPPublic.py according to the comments within the code (you don't have to do anything complicated, just edit some filepaths and the OpenAI API key)
   9. Add an empty text file in the OneReality-main folder called "conversation.txt"
