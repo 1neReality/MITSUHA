@@ -1,5 +1,3 @@
-# If you came here from my YouTube short, The installation is crazy so I haven't written one yet but I will probably in a couple hours or a couple days from when you read this so make sure to star it
-
 # Demo (with VTubeStudio lip synced to Megumin)
 https://youtu.be/TGZV831VTpc
 
@@ -24,19 +22,23 @@ If you think you can help with any of these or make any other improvements, join
 # How it works
 First, the Python package SpeechRecognition recognizes what you say into your mic, then that speech is written into an audio (.wav) file, which is sent to OpenAI's Whisper speech to text transcription AI, and the transcribed result is printed in the terminal and sent to OpenAI's GPT-3, then GPT's response will be printed in the terminal and translated to Japanese, which will also be printed in the terminal, and finally, the Japanese translation will be sent to the VoiceVox text to speech engine and will be read out in an anime girl-like voice. All of this happens in approximately 7-11 seconds, depending on the length of what you say, the length of what the AI says, and your GPU (slightly).
 
-# Install (Outdated, works for Voicevox Japanese but gotta make a new tutorial for PiperTTS English soon but it's hell T-T)
-[Video tutorial](https://www.youtube.com/@OneReality-tb4ut). This tutorial is for Windows only right now. I have not made any versions for Mac and Linux yet, but mabye in the future.
+# Install
  1. [Purchase an OpenAI API key](https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key). It's extremely affordable, since it's pay as you go, and I've been using it for a couple minutes a day like 3 times a week and I got charged less than a dollar for this month.
  2. [Install Python](https://www.python.org/downloads/) and set it as an environment variable in PATH
  3. [Download the latest release](https://github.com/DogeLord081/OneReality/releases/latest)
- 4. [Download VoiceVox Engine](https://github.com/VOICEVOX/voicevox_engine/releases/latest), if you're using an Nvidia GPU like me, click Windows（GPU/CUDA版)
-  5. Extract the OneReality-main folder so that it is only one folder deep
-  6. [Install 7zip](https://www.7-zip.org/download.html) and extract the VoiceVox folder so that it's also only one folder deep and drag the folder into the OneReality folder
-  7. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
-  8. Edit the code in OneRealityJPPublic.py according to the comments within the code (you don't have to do anything complicated, just edit some filepaths and the OpenAI API key)
-  9. Add an empty text file in the OneReality-main folder called "conversation.txt"
-  10. Run OneReality.bat and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's https://discord.gg/PN48PZEXJS
-  11. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically clears the conversation.txt. If you don't, it's fine you can just manually delete everything in the file
+ 4. Install WSL2 by opening a cmd in admin and running `wsl --install`
+ 5. Set default distro version to WSL2 with `wsl --set-default-version 2`
+ 6. Install [Ubuntu 22.04.2 WSL2 from Microsoft Store](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW?hl=en-us&gl=us&rtc=1)
+ 7. Check that Ubuntu is WSL2 and not WSL1 by running `wsl -l -v` in cmd. If it says 1, run `wsl --set-version Ubuntu-22.04 2`
+ 8. In the start menu, find the app `Ubuntu 22.04.2 LTS` and open it
+ 9. In the terminal that pops up, run `git clone https://github.com/rhasspy/piper.git`
+ 10. Extract the `OneReality-main` folder from step 3 so that it is only one folder deep and rename the folder to just `OneReality`
+ 11. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
+ 13. Add an empty text file in the OneReality-main folder called `conversation.txt`
+ 14. Download `model.onnx` and `model.onnx.json` from [Huggingface](https://huggingface.co/DogeLord/megumin/tree/main) and make a folder called `model` in the `OneReality` folder and put the two files in it
+ 15. Edit the code in `OneRealityENPublic.py` according to the comments within the code (you don't have to do anything complicated, just edit some filepaths and the OpenAI API key. Don't forget lines 154 and 185, they are the file paths to the model and output wav. /mnt/c/... means C:\... but you have to keep it as /mnt/c/... not C:\... because then WSL2 can't access it. So if the path to your model is `C:\Users\danu0\Downloads\OneReality\model9\model.onnx`, you'd make it `/mnt/c/Users/danu0/Downloads/OneReality/model9/model.onnx`)
+ 16. Run `OneReality.bat` and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's https://discord.gg/PN48PZEXJS
+ 17. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically clears the `conversation.txt`. If you don't, it's fine you can just manually delete everything in the file
 
 # Credits
 https://github.com/ardha27/AI-Waifu-Vtuber
