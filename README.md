@@ -1,3 +1,5 @@
+# If you came here from my YouTube short, The installation is crazy so I haven't written one yet but I will probably in a couple hours or a couple days from when you read this so make sure to star it
+
 # Demo (with VTubeStudio lip synced to Megumin)
 https://youtu.be/TGZV831VTpc
 
