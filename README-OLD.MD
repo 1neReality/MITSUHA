@@ -1,4 +1,4 @@
-# Old README + Install guide for VoiceVox Japanese versio
+# Old README + Install guide for VoiceVox Japanese version
 
 # Demo (with VTubeStudio lip synced to Megumin)
 https://youtu.be/TGZV831VTpc
