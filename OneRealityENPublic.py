@@ -151,7 +151,7 @@ while True:
         response = response[9: ]
         response = re.sub(r'\*.*?\* ', '', response)
         response = response.replace('"', '\\"')
-        command = 'wsl ~ -e sh -c "cd piper/src/python_run; echo \\"{response}\\" | python3 -m piper -m /mnt/c/Users/danu0/Downloads/OneReality/model9/model.onnx -f /mnt/c/Users/danu0/Downloads/OneReality/out.wav"'
+        command = 'wsl ~ -e sh -c "cd piper/src/python_run; echo \\"{response}\\" | python3 -m piper -m /mnt/c/Users/danu0/Downloads/OneReality/model9/model.onnx -f /mnt/c/Users/danu0/Downloads/OneReality/out.wav --sentence-silence 0.3"'
         os.system(command.format(response=response))
         
         winsound.PlaySound(r"out.wav", winsound.SND_FILENAME)
@@ -182,7 +182,7 @@ while True:
         response = response[9: ]
         response = re.sub(r'\*.*?\* ', '', response)
         response = response.replace('"', '\\"')
-        command = 'wsl ~ -e sh -c "cd piper/src/python_run; echo \\"{response}\\" | python3 -m piper -m /mnt/c/Users/danu0/Downloads/OneReality/model9/model.onnx -f /mnt/c/Users/danu0/Downloads/OneReality/out.wav"'
+        command = 'wsl ~ -e sh -c "cd piper/src/python_run; echo \\"{response}\\" | python3 -m piper -m /mnt/c/Users/danu0/Downloads/OneReality/model9/model.onnx -f /mnt/c/Users/danu0/Downloads/OneReality/out.wav --sentence-silence 0.3"'
         os.system(command.format(response=response))
         
         winsound.PlaySound(r"out.wav", winsound.SND_FILENAME)
