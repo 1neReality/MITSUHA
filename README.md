@@ -31,7 +31,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/DogeLord081/OneReality-README">
+  <a href="https://github.com/DogeLord081/OneReality">
     <img src="OneReality Logo Transparent.png" alt="Logo" width="150" height="150">
   </a>
 
