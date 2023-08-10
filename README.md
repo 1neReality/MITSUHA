@@ -79,7 +79,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-![Product Name Screen Shot](https://github.com/DogeLord081/OneReality-README/blob/master/image.png)
+![Demo](https://github.com/DogeLord081/OneReality-README/blob/master/image.png)(https://youtu.be/eZridsHbooE)
+Click on image for demo video
 
 A virtual waifu / assistant that you can speak to through your mic and it'll speak back to you! Has many features such as:
 
