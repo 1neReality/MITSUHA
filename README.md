@@ -115,7 +115,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 <!-- GETTING STARTED -->
 ## Getting Started
 
-[Video tutorial](https://youtu.be/qWpYE447iQA). Here's how you can set it up on Windows (probably similar steps on Mac and Linux but I haven't tested them).
+[Video tutorial](https://youtu.be/qWpYE447iQA) (outdated don't watch this one). Here's how you can set it up on Windows (probably similar steps on Mac and Linux but I haven't tested them).
 
 ### Prerequisites
 
