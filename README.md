@@ -122,7 +122,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 
 1. [Purchase an OpenAI API key](https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key). It's extremely affordable, since it's pay as you go, and I've been using it for a couple minutes a day like 3 times a week and I got charged less than a dollar for this month.
 2. [Install Python](https://www.python.org/downloads/) and set it as an environment variable in PATH
-3. [Download the latest release](https://github.com/DogeLord081/OneReality/releases/latest)
+3. [Download the source code](https://github.com/DogeLord081/OneReality/)
 4. Install WSL2 by opening a cmd in admin and running `wsl --install`
 5. Set default distro version to WSL2 with `wsl --set-default-version 2`
 6. Install [Ubuntu 22.04.2 WSL2 from Microsoft Store](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW?hl=en-us&gl=us&rtc=1)
