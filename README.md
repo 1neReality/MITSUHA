@@ -41,11 +41,11 @@
     Bridging the real and virtual worlds
     <br />
     <br />
-    <a href="https://youtu.be/TGZV831VTpc">View Demo (Lipsynced to Megumin in VTube Studio)</a>
+    <a href="https://youtu.be/eZridsHbooE">Demo Video (Lipsynced to Megumin in VTube Studio)</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/DogeLord081/OneReality/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/DogeLord081/OneReality/issues">Request Feature</a>
   </p>
 </div>
 
