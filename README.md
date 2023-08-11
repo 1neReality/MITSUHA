@@ -132,7 +132,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 1. Check that Ubuntu is WSL2 and not WSL1 by running `wsl -l -v` in cmd. If it says 1, run `wsl --set-version Ubuntu-22.04 2`
 2. In the start menu, find the app `Ubuntu 22.04.2 LTS` and open it
 3. In the terminal that pops up, run `git clone https://github.com/rhasspy/piper.git`
-4. Extract the `OneReality-main` folder from step 3 so that it is only one folder deep and rename the folder to just `OneReality`
+4. Extract the `OneReality-main` folder from prerequisites step 3 so that it is only one folder deep and rename the folder to just `OneReality`
 5. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
 6. Add an empty text file in the OneReality-main folder called `conversation.txt`
 7. Download `model.onnx` and `model.onnx.json` from [Huggingface](https://huggingface.co/DogeLord/megumin/tree/main) and make a folder called `model` in the `OneReality` folder and put the two files in it
