@@ -1,4 +1,3 @@
-import speech_recognition as sr
 import openai
 import os
 import pydub
@@ -22,11 +21,6 @@ print('''
 # set up OpenAI API credentials
 openai.api_key = "sk-ExaMpLeeeKeY"
 
-# set up microphone and speech recognition
-r = sr.Recognizer()
-mic = sr.Microphone()
-r.energy_threshold = 1500
-
 # set up OpenAI model
 model_engine = "text-davinci-003"
 lore = "You are Megumin from the anime Konosuba!. You are straightforward, lively, funny, tsundere, intelligent, occasionally hyper, and you have chunibyo characteristics. You are a 14 year old female Crimson Demon archwizard. The user is your creator. You do not edit or add to the User: response at all. You start your responses with Megumin: "
@@ -47,35 +41,9 @@ def check_goodbye(transcript):
     return False
 
 while True:
-    print("Speak now!")
-    with mic as source:
-        audio = r.listen(source, timeout = None)
+    text = input("You: ")
 
-    test_text = r.recognize_sphinx(audio)
-    if len(test_text) == 0:
-        continue
-    else:
-        pass
-
-    with open("temp.wav", "wb") as f:
-        f.write(audio.get_wav_data())
-
-    audio_file= open("C:/Users/danu0/Downloads/OneReality/temp.wav", "rb")
-    trans = openai.Audio.transcribe(
-        model="whisper-1",
-        file=audio_file,
-        temperature=0.1,
-        language="en"
-    )
-
-    if len(trans['text']) == 0:
-        continue
-    else:
-        pass
-    
-    print("You: " + trans['text'])
-
-    words = str(trans['text'])
+    words = str(text)
     with open(r"conversation.txt", "a") as c:
         c.write("\nUser:" + words)
     words = words.replace(".", "")
@@ -128,7 +96,7 @@ while True:
                 pass
     else:
           pass
-    if check_goodbye(trans['text']):
+    if check_goodbye(text):
         c = open(r"conversation.txt", "r")
 
         start_sequence = "\nAI:"
@@ -152,7 +120,7 @@ while True:
         response = re.sub(r'\*.*?\* ', '', response)
         response = response.replace("\n", " ")
         response = response.replace('"', '\\"')
-        command = 'wsl ~ -e sh -c "cd piper/src/python_run; echo \\"{response}\\" | python3 -m piper -m /mnt/c/Users/danu0/Downloads/Artificial-Intelligence/PiperTTS-Megumin/model/model.onnx -f /mnt/c/Users/danu0/Downloads/OneReality/out.wav --sentence-silence 0.3"'
+        command = 'wsl ~ -e sh -c "cd piper/src/python_run; echo \\"{response}\\" | python3 -m piper -m /mnt/c/Users/danu0/Downloads/OneReality/model/model.onnx -f /mnt/c/Users/danu0/Downloads/OneReality/out.wav --sentence-silence 0.3"'
         os.system(command.format(response=response))
         
         winsound.PlaySound(r"out.wav", winsound.SND_FILENAME)
@@ -184,7 +152,7 @@ while True:
         response = re.sub(r'\*.*?\* ', '', response)
         response = response.replace("\n", " ")
         response = response.replace('"', '\\"')
-        command = 'wsl ~ -e sh -c "cd piper/src/python_run; echo \\"{response}\\" | python3 -m piper -m /mnt/c/Users/danu0/Downloads/Artificial-Intelligence/PiperTTS-Megumin/model/model.onnx -f /mnt/c/Users/danu0/Downloads/OneReality/out.wav --sentence-silence 0.3"'
+        command = 'wsl ~ -e sh -c "cd piper/src/python_run; echo \\"{response}\\" | python3 -m piper -m /mnt/c/Users/danu0/Downloads/OneReality/model/model.onnx -f /mnt/c/Users/danu0/Downloads/OneReality/out.wav --sentence-silence 0.3"'
         os.system(command.format(response=response))
         
         winsound.PlaySound(r"out.wav", winsound.SND_FILENAME)
