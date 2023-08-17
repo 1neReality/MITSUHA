@@ -92,7 +92,7 @@ A virtual waifu / assistant that you can speak to through your mic and it'll spe
 
 More features I'm planning to add soon in the [roadmap](https://github.com/DogeLord081/OneReality#roadmap). Also, here's a summary of how it works for those of you who want to know:
 
-First, the Python package SpeechRecognition recognizes what you say into your mic, then that speech is written into an audio (.wav) file, which is sent to OpenAI's Whisper speech to text transcription AI, and the transcribed result is printed in the terminal and sent to OpenAI's GPT-3, then GPT's response will be printed in the terminal and sent to PiperTTS which will generate and play an audio file with Megumin's voice reading the text (In English). All of this happens anywhere between 2-10 seconds, depending on the length of what you say, the length of what the AI says, and your GPU or CPU.
+First, the Python package SpeechRecognition recognizes what you say into your mic, then that speech is written into an audio (.wav) file, which is sent to OpenAI's Whisper speech-to-text transcription AI, and the transcribed result is printed in the terminal and sent to OpenAI's GPT-3, then GPT's response will be printed in the terminal and sent to PiperTTS which will generate and play an audio file with Megumin's voice reading the text (In English). All of this happens anywhere between 2-10 seconds, depending on the length of what you say, the length of what the AI says, and your GPU or CPU.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -116,7 +116,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 <!-- GETTING STARTED -->
 ## Getting Started
 
-[Video tutorial](https://youtu.be/qWpYE447iQA) (outdated don't watch this one). Here's how you can set it up on Windows (probably similar steps on Mac and Linux but I haven't tested them).
+[Video tutorial](https://youtu.be/w2pxHZ-GX5Y) Here's how you can set it up on Windows (probably similar steps on Mac and Linux but I haven't tested them).
 
 ### Prerequisites
 
