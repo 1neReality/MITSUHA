@@ -1,9 +1,6 @@
 import speech_recognition as sr
 import openai
 import os
-import pydub
-import pydub.playback
-import io
 from googletrans import Translator
 import urllib
 import urllib.parse
@@ -40,10 +37,6 @@ chat_log = r"C:\somewhere\conversation.txt"
 
 with open(chat_log, "r") as c:
         conversation = c.read
-
-def play(bytesData):
-        sound = pydub.AudioSegment.from_file_using_temporary_files(io.BytesIO(bytesData))
-        pydub.playback.play(sound)
 
 # define function to check if user has said "bye", "goodbye", or "see you"
 
