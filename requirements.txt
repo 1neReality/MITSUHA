@@ -1,7 +1,4 @@
 SpeechRecognition
 openai
-pydub
-googletrans==3.1.0a0
 requests
 pocketsphinx
-pyaudio
