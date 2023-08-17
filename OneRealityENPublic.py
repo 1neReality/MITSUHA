@@ -1,9 +1,6 @@
 import speech_recognition as sr
 import openai
 import os
-import pydub
-import pydub.playback
-import io
 import winsound
 import webbrowser
 import re
@@ -34,11 +31,6 @@ with open(r"conversation.txt", "r") as c:
         conversation = c.read
 
 # define function to check if user has said "bye", "goodbye", or "see you"
-
-def play(bytesData):
-        sound = pydub.AudioSegment.from_file_using_temporary_files(io.BytesIO(bytesData))
-        pydub.playback.play(sound)
-
 def check_goodbye(transcript):
     goodbye_words = ["bye", "goodbye", "see you"]
     for word in goodbye_words:
