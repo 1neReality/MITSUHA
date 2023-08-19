@@ -132,9 +132,9 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 1. Check that Ubuntu is WSL2 and not WSL1 by running `wsl -l -v` in cmd. If it says 1, run `wsl --set-version Ubuntu-22.04 2`
 2. In the start menu, find the app `Ubuntu 22.04.2 LTS` and open it
 3. In the terminal that pops up, run `git clone https://github.com/rhasspy/piper.git`
-4. Extract the `OneReality-main` folder from prerequisites step 3 so that it is only one folder deep and rename the folder to just `OneReality`
-5. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
-6. Add an empty text file in the OneReality-main folder called `conversation.txt`
+4. run `cd piper/src/python` then run `pip install -r requirements.txt`
+5. Extract the `OneReality-main` folder from prerequisites step 3 so that it is only one folder deep and rename the folder to just `OneReality`
+6. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
 7. Download `model.onnx` and `model.onnx.json` from [Huggingface](https://huggingface.co/DogeLord/megumin/tree/main) and make a folder called `model` in the `OneReality` folder and put the two files in it
 8. Edit the code in `OneRealityENPublic.py` according to the comments within the code (you don't have to do anything complicated, just edit some filepaths and the OpenAI API key. Don't forget lines 154 and 185, they are the file paths to the model and output wav. /mnt/c/... means C:\... but you have to keep it as /mnt/c/... not C:\... because then WSL2 can't access it. So if the path to your model is `C:\Users\danu0\Downloads\OneReality\model9\model.onnx`, you'd make it `/mnt/c/Users/danu0/Downloads/OneReality/model9/model.onnx`)
 9. Run `OneReality.bat` and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's https://discord.gg/PN48PZEXJS
