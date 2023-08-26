@@ -147,20 +147,22 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Long-term memory
+- [x] Long-term memory
 - [ ] Virtual reality / augmented reality / mixed reality integration
-- [ ] Gatebox style hologram
-- [x] Alexa like smart home control
+- [ ] Gatebox-style hologram
+- [ ] Animatronic body
+- [x] Alexa-like smart home control
 - [ ] More languages for the AI's voice
   - [x] Japanese
   - [x] English
   - [ ] Korean
-  - [ ] Chinese
+  - [x] Chinese
   - [ ] Spanish
   - [ ] Indonesian
 - [ ] Mobile version
 - [ ] Easier setup
 - [ ] Compiling into one exe
+- [x] Localized
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
