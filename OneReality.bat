@@ -1,3 +1,3 @@
 @echo off
-python OneRealityEN.py
+python OneRealityENMemory.py
 pause
