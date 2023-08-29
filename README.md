@@ -126,6 +126,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 4. Install WSL2 by opening a cmd in admin and running `wsl --install`
 5. Set default distro version to WSL2 with `wsl --set-default-version 2`
 6. Install [Ubuntu 22.04.2 WSL2 from Microsoft Store](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW?hl=en-us&gl=us&rtc=1)
+7. Create a Tuya cloud project if you want to control your smart devices with the AI, for example you can say 'Hey Megumin, can you turn on my LEDs' it's a bit complicated though and I'll probably make a video on it later because it's hard to explain through text, but here's a guide that should help you out: [https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8)
 
 ### Installation
 
