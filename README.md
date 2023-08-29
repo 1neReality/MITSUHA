@@ -120,9 +120,9 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 
 ### Prerequisites
 
-1. [Purchase an OpenAI API key](https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key). It's extremely affordable, since it's pay as you go, and I've been using it for a couple minutes a day like 3 times a week and I got charged less than a dollar for this month.
+1. [Purchase an OpenAI API key](https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key). It's extremely affordable, since it's pay as you go, and you only need it for whisper stt which is like $0.36 per hour of audio transcribed. Anyways, if you're talking to AI Megumin for more than an hour a month, that might be a you problem
 2. [Install Python](https://www.python.org/downloads/) and set it as an environment variable in PATH
-3. [Download the source code](https://github.com/DogeLord081/OneReality/archive/refs/heads/main.zip)
+3. [Download the prerelease source code](https://github.com/DogeLord081/OneReality/releases/tag/v2.0.0)
 4. Install WSL2 by opening a cmd in admin and running `wsl --install`
 5. Set default distro version to WSL2 with `wsl --set-default-version 2`
 6. Install [Ubuntu 22.04.2 WSL2 from Microsoft Store](https://apps.microsoft.com/store/detail/ubuntu-22042-lts/9PN20MSR04DW?hl=en-us&gl=us&rtc=1)
@@ -131,14 +131,16 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 
 1. Check that Ubuntu is WSL2 and not WSL1 by running `wsl -l -v` in cmd. If it says 1, run `wsl --set-version Ubuntu-22.04 2`
 2. In the start menu, find the app `Ubuntu 22.04.2 LTS` and open it
-3. In the terminal that pops up, run `git clone https://github.com/rhasspy/piper.git`
-4. run `cd piper/src/python` then run `pip install -r requirements.txt`
-5. Extract the `OneReality-main` folder from prerequisites step 3 so that it is only one folder deep and rename the folder to just `OneReality`
-6. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
-7. Download `model.onnx` and `model.onnx.json` from [Huggingface](https://huggingface.co/DogeLord/megumin/tree/main) and make a folder called `model` in the `OneReality` folder and put the two files in it
-8. Edit the code in `OneRealityENPublic.py` according to the comments within the code (you don't have to do anything complicated, just edit some filepaths and the OpenAI API key. Don't forget lines 154 and 185, they are the file paths to the model and output wav. /mnt/c/... means C:\... but you have to keep it as /mnt/c/... not C:\... because then WSL2 can't access it. So if the path to your model is `C:\Users\danu0\Downloads\OneReality\model9\model.onnx`, you'd make it `/mnt/c/Users/danu0/Downloads/OneReality/model9/model.onnx`)
-9. Run `OneReality.bat` and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's https://discord.gg/PN48PZEXJS
-10. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically clears the `conversation.txt`. If you don't, it's fine you can just manually delete everything in the file
+3. In the terminal that pops up, run `git clone https://github.com/Plachtaa/VITS-fast-fine-tuning`
+4. Install python3.8 on WSL2 with [this guide](https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/)
+5. run `cd VITS-fast-fine-tuning` then run `python3.8 -m pip install -r requirements.txt`, if you have some building wheels error for pyopenjtalk, try `python3.8 -m pip install pyopenjtalk==0.1.3 --no-build-isolation --no-cache-dir`, this is a huge problem right now and may or not not work, which is a big part of why this is a prerelease. I'm trying to get this working without WSL2 or pyopenjtalk, but it's not easy
+6. Download an LLM and put it in your OneReality folder. Personally I used [wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin](https://huggingface.co/TheBloke/WizardLM-1.0-Uncensored-Llama2-13B-GGML/blob/main/wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin) but it really depends on your hardware
+7. Extract the `OneReality-main` folder from prerequisites step 3 so that it is only one folder deep and rename the folder to just `OneReality`
+8. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
+9. Download `G_latest.pth` and `finetune_speaker.json` from [Huggingface](https://huggingface.co/DogeLord/megumin-VITS/tree/main) and make a folder called `model` in the `OneReality` folder and put the two files in it
+10. Edit the variables in `.env`
+11. Run `OneReality.bat` and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's https://discord.gg/PN48PZEXJS
+12. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically ends the program, otherwise you can just ctrl + c or close the window
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
