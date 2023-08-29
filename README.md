@@ -133,14 +133,15 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 2. In the start menu, find the app `Ubuntu 22.04.2 LTS` and open it
 3. In the terminal that pops up, run `git clone https://github.com/Plachtaa/VITS-fast-fine-tuning`
 4. Install python3.8 on WSL2 with [this guide](https://linuxize.com/post/how-to-install-python-3-8-on-ubuntu-18-04/)
-5. run `cd VITS-fast-fine-tuning` then run `python3.8 -m pip install -r requirements.txt`, if you have some building wheels error for pyopenjtalk, try `python3.8 -m pip install pyopenjtalk==0.1.3 --no-build-isolation --no-cache-dir`, this is a huge problem right now and may or not not work, which is a big part of why this is a prerelease. I'm trying to get this working without WSL2 or pyopenjtalk, but it's not easy
-6. Download an LLM and put it in your OneReality folder. Personally I used [wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin](https://huggingface.co/TheBloke/WizardLM-1.0-Uncensored-Llama2-13B-GGML/blob/main/wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin) but it really depends on your hardware
-7. Extract the `OneReality-main` folder from prerequisites step 3 so that it is only one folder deep and rename the folder to just `OneReality`
-8. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
-9. Download `G_latest.pth` and `finetune_speaker.json` from [Huggingface](https://huggingface.co/DogeLord/megumin-VITS/tree/main) and make a folder called `model` in the `OneReality` folder and put the two files in it
-10. Edit the variables in `.env`
-11. Run `OneReality.bat` and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's https://discord.gg/PN48PZEXJS
-12. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically ends the program, otherwise you can just ctrl + c or close the window
+5. Run `python3.8 -m pip install cmake`
+6. run `cd VITS-fast-fine-tuning` then run `python3.8 -m pip install -r requirements.txt`, if you have some building wheels error for pyopenjtalk, try `python3.8 -m pip install pyopenjtalk==0.1.3 --no-build-isolation --no-cache-dir`, this is a huge problem right now and may or may not work, which is a big part of why this is a prerelease. I'm trying to get this working without WSL2 or pyopenjtalk, but it's not easy
+7. Download an LLM and put it in your OneReality folder. Personally I used [wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin](https://huggingface.co/TheBloke/WizardLM-1.0-Uncensored-Llama2-13B-GGML/blob/main/wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin) but it really depends on your hardware
+8. Extract the `OneReality-main` folder from prerequisites step 3 so that it is only one folder deep and rename the folder to just `OneReality`
+9. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
+10. Download `G_latest.pth` and `finetune_speaker.json` from [Huggingface](https://huggingface.co/DogeLord/megumin-VITS/tree/main) and make a folder called `model` in the `OneReality` folder and put the two files in it
+11. Edit the variables in `.env`
+12. Run `OneReality.bat` and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's https://discord.gg/PN48PZEXJS
+13. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically ends the program, otherwise you can just ctrl + c or close the window
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
