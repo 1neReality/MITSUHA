@@ -11,4 +11,3 @@ sentence-transformers
 python-dotenv
 pyaudio
 wave
-base64

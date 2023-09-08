@@ -52,29 +52,30 @@ finetune_json = "ewogICJ0cmFpbiI6IHsKICAgICJsb2dfaW50ZXJ2YWwiOiAxMCwKICAgICJldmF
 with open("model/finetune_speaker.json", "w") as f:
     f.write(base64.b64decode(finetune_json).decode("utf-8"))
 
-print("Would you like to go through the setup here or just exit? [y/n]")
-if input() == "y":
-    print("Okay, continuing...")
-else:
-    exit()
+# print("Would you like to go through the setup here or just exit? [y/n]")
+# if input() == "y":
+#     print("Okay, continuing...")
+# else:
+#     exit()
 
-print("Leave any blank if you want to use the default value or if it doesn't apply to you.")
-lang = input("What language do you want to use? [Jp/En/Chi] ")
-print("--------------------")
-name = input("What is your name? ")
-print("--------------------")
-print("Go here: https://platform.openai.com/account/api-keys and click 'Create new secret key'")
-api_key = input("What is your OpenAI API key? ")
-print("--------------------")
-print("Go here: https://iot.tuya.com/cloud/basic?id=p1692112169571as54tf&region=AZ&toptab=project Access ID/Client ID is TUYA_ID and Access Secret/Client Secret is TUYA_SECRET")
-tuya_id = input("What is your TUYA_ID? ")
-tuya_secret = input("What is your TUYA_SECRET? ")
-print("In the link above, take note of the datacenter location and in this link: https://developer.tuya.com/en/docs/iot/api-request?id=Ka4a8uuo1j4t4#title-1-Endpoints find the corresponding endpoint link")
-endpoint = input("What is your endpoint link? [Leave blank for default] ")
-if endpoint == "":
-    endpoint = "https://openapi.tuyaus.com"
-print("--------------------")
-model = input("What is the name of your model file? [Leave blank for default] (wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin)")
-print("--------------------")
-print("To add devices, please edit the .env file!")
-print("SETUP COMPLEATE! Please run the OneReality.bat file to start the program.")
+# print("Leave any blank if you want to use the default value or if it doesn't apply to you.")
+# lang = input("What language do you want to use? [Jp/En/Chi] ")
+# print("--------------------")
+# name = input("What is your name? ")
+# print("--------------------")
+# print("Go here: https://platform.openai.com/account/api-keys and click 'Create new secret key'")
+# api_key = input("What is your OpenAI API key? ")
+# print("--------------------")
+# print("Go here: https://iot.tuya.com/cloud/basic?id=p1692112169571as54tf&region=AZ&toptab=project Access ID/Client ID is TUYA_ID and Access Secret/Client Secret is TUYA_SECRET")
+# tuya_id = input("What is your TUYA_ID? ")
+# tuya_secret = input("What is your TUYA_SECRET? ")
+# print("In the link above, take note of the datacenter location and in this link: https://developer.tuya.com/en/docs/iot/api-request?id=Ka4a8uuo1j4t4#title-1-Endpoints find the corresponding endpoint link")
+# endpoint = input("What is your endpoint link? [Leave blank for default] ")
+# if endpoint == "":
+#     endpoint = "https://openapi.tuyaus.com"
+# print("--------------------")
+# model = input("What is the name of your model file? [Leave blank for default] (wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin)")
+# print("--------------------")
+
+# print("To add devices, please edit the .env file!")
+print("SETUP COMPLEATE! Please edit the env file!")
