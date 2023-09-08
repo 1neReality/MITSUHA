@@ -52,6 +52,27 @@ finetune_json = "ewogICJ0cmFpbiI6IHsKICAgICJsb2dfaW50ZXJ2YWwiOiAxMCwKICAgICJldmF
 with open("model/finetune_speaker.json", "w") as f:
     f.write(base64.b64decode(finetune_json).decode("utf-8"))
 
+print("Do you want to use tuya? [y/n]")
+if input() == "n":
+    print("Okay, Removing tuya from script...")
+else:
+    print("SETUP COMPLEATE! Please edit the env file!")
+    exit()
+    
+
+    
+with open ("OneRealityENMemory.py", "r") as f:
+    data = f.read()
+    data = data.replace("tuya = True", "tuya = False")
+    
+with open ("OneRealityENMemory.py", "w") as f:
+    f.write(data)
+    
+print("If you want to use tuya, please edit the OneRealityENMemory.py file! and set tuya = True")
+print("SETUP COMPLEATE! Please edit the env file!")
+
+
+
 # print("Would you like to go through the setup here or just exit? [y/n]")
 # if input() == "y":
 #     print("Okay, continuing...")
@@ -78,4 +99,3 @@ with open("model/finetune_speaker.json", "w") as f:
 # print("--------------------")
 
 # print("To add devices, please edit the .env file!")
-print("SETUP COMPLEATE! Please edit the env file!")
