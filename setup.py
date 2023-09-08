@@ -3,6 +3,7 @@ os.system("pip install -r requirements.txt")
 
 import requests
 import base64
+import time
 
 cmd = os.system
 # Clone the repository
@@ -12,9 +13,12 @@ cmd("pip install cmake")
 
 # run pip install in VITS-fast-fine-tuning directory
 # if an error occurs, try to run the print to console
-if cmd("pip install -r VITS-fast-fine-tuning/requirements.txt") != 0:
-    print("Error occured, trying to run pip install again")
-    cmd("pip install pyopenjtalk==0.1.3 --no-build-isolation --no-cache-dir")
+cmd("pip install cython")
+print("If you get an error here, please follow https://www.youtube.com/watch?v=8CNRX1Bk5sY and run this script again. Continuing in 5.")    
+time.sleep(5)
+cmd("pip install pyopenjtalk==0.1.3 --no-build-isolation --no-cache-dir")
+print("If you got an error here, please follow https://www.youtube.com/watch?v=8CNRX1Bk5sY and run this script again")    
+
 
 print("Now please download an LLM model and put it in your OneReality folder. You could use https://tinyurl.com/onereality if you want.")
 print("Press any key to continue after you downloaded the model.")
