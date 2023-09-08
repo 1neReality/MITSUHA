@@ -70,7 +70,7 @@ with open ("OneRealityENMemory.py", "w") as f:
     
 print("If you want to use tuya, please edit the OneRealityENMemory.py file! and set tuya = True")
 print("SETUP COMPLEATE! Please edit the env file!")
-
+print("Note if you encounter any errors when running OneReality.bat, please read the error like it might say install this or that. if you can't figure it out, please contact me on discord: https://discord.gg/PN48PZEXJS")
 
 
 # print("Would you like to go through the setup here or just exit? [y/n]")
