@@ -1,7 +1,9 @@
 import speech_recognition as sr
 import os
-import winsound
+import pyaudio
 import webbrowser
+import requests
+import subprocess
 import openai
 import re
 import torch
@@ -15,6 +17,10 @@ import json
 from hyperdb import HyperDB
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
+import wave
+
+
+
 
 #Load env variables
 load_dotenv()
@@ -280,11 +286,37 @@ while True:
     VITS_OUTPUT_PATH = os.getenv("VITS_OUTPUT_PATH")
     LANGUAGE = os.getenv("LANGUAGE")
     VITS_SPEAKER_NAME = os.getenv("VITS_SPEAKER_NAME")
-    command = f'wsl ~ -e sh -c "export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH; python3.8 VITS-fast-fine-tuning/cmd_inference.py -m {VITS_MODEL_PATH} -c {VITS_CONFIG_PATH} -o {VITS_OUTPUT_PATH} -l {LANGUAGE} -t \\"{response}\\" -s "{VITS_SPEAKER_NAME}""'
-    os.system(command.format(response=response))
+
+    command = f'python3.8 VITS-fast-fine-tuning/cmd_inference.py -m {VITS_MODEL_PATH} -c {VITS_CONFIG_PATH} -o {VITS_OUTPUT_PATH} -l {LANGUAGE} -t "{response}" -s "{VITS_SPEAKER_NAME}"'
+    subprocess.run(command, shell=True)
+
     
-    winsound.PlaySound(r"output.wav", winsound.SND_FILENAME)
-    os.remove(r"output.wav")
+    if os.path.exists(r"output.wav"):
+        pyaudio = pyaudio.PyAudio()
+        wf = wave.open(r"output.wav", "rb")
+        # Initialize PyAudio
+        p = pyaudio.PyAudio()
+
+        # Open a stream
+        stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+                        channels=wf.getnchannels(),
+                        rate=wf.getframerate(),
+                        output=True)
+
+        # Read and play the audio data in chunks
+        chunk_size = 1024
+        data = wf.readframes(chunk_size)
+
+        while data:
+            stream.write(data)
+            data = wf.readframes(chunk_size)
+
+        # Close the stream and PyAudio
+        stream.stop_stream()
+        stream.close()
+
+        p.terminate()
+        os.remove(r"output.wav")
 
     if check_goodbye(trans['text']):
         break

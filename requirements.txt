@@ -5,8 +5,10 @@ torch
 transformers
 tuya-connector-python
 appopener
-webbrowser
 llama-cpp-python
 hyperdb-python
 sentence-transformers
 python-dotenv
+pyaudio
+wave
+base64
