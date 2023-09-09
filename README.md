@@ -201,12 +201,13 @@ Project Link: [https://github.com/DogeLord081/OneReality](https://github.com/Dog
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## Acknowledgments and Major Contributors
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [AI Waifu Vtuber](https://github.com/ardha27/AI-Waifu-Vtuber)
 * [SchizoDev](https://youtu.be/dKFnJCtcfMk)
 * xor
+* @jaxfry
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
