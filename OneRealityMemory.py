@@ -16,6 +16,10 @@ from dotenv import load_dotenv
 import random
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import requests
+###
+# Set to True if you want to use tuya
+tuya = True
+###
 
 # VITS api
 abs_path = os.path.dirname(__file__)
@@ -45,10 +49,11 @@ LLM = Llama(model_path=os.getenv("LLM"), n_ctx=2048, n_gpu_layers=-1, verbose=Fa
 # set up OpenAI API credentials
 openai.api_key = os.getenv("OPENAI_KEY")
 
-# set up Tuya API credentials
-ACCESS_ID = os.getenv("TUYA_ID")
-ACCESS_KEY = os.getenv("TUYA_SECRET")
-API_ENDPOINT = os.getenv("TUYA_ENDPOINT")
+if tuya == True:
+    # set up Tuya API credentials
+    ACCESS_ID = os.getenv("TUYA_ID")
+    ACCESS_KEY = os.getenv("TUYA_SECRET")
+    API_ENDPOINT = os.getenv("TUYA_ENDPOINT")
 
 # set up microphone and speech recognition
 r = sr.Recognizer()
@@ -190,36 +195,36 @@ while True:
 
     sentence = "Activate [device]."
     input_sentence = trans['text'].lower()
+    if tuya == True:
+        for word in devices:
+            if word in input_sentence:
+                modified_sentence = replace_device(sentence, word)
 
-    for word in devices:
-        if word in input_sentence:
-            modified_sentence = replace_device(sentence, word)
-
-            input_sentence = keep_sentence_with_word(input_sentence, word)
-            input_sentence = input_sentence.translate(str.maketrans('', '', string.punctuation))
-            print(input_sentence)
-            similarity = (test_equivalence(modified_sentence, input_sentence))
-            print(similarity)
-            if similarity >= 0.5:
-                openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
-                openapi.connect()
-                if word == os.getenv("DEVICE_1"):
-                    commands = {'commands': [{'code':'switch_1','value': True}]}	
-                    openapi.post(os.getenv("DEVICE_1_ID"), commands)
-                if word == os.getenv("DEVICE_2"):
-                    commands = {'commands': [{'code':'switch_1','value': True}]}	
-                    openapi.post(os.getenv("DEVICE_2_ID"), commands)
-            elif similarity < 0.001:
-                openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
-                openapi.connect()
-                if word == os.getenv("DEVICE_1"):
-                    commands = {'commands': [{'code':'switch_1','value': False}]}	
-                    openapi.post(os.getenv("DEVICE_1_ID"), commands)
-                if word == os.getenv("DEVICE_2"):
-                    commands = {'commands': [{'code':'switch_1','value': False}]}	
-                    openapi.post(os.getenv("DEVICE_2_ID"), commands)
-    else:
-        pass
+                input_sentence = keep_sentence_with_word(input_sentence, word)
+                input_sentence = input_sentence.translate(str.maketrans('', '', string.punctuation))
+                print(input_sentence)
+                similarity = (test_equivalence(modified_sentence, input_sentence))
+                print(similarity)
+                if similarity >= 0.5:
+                    openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
+                    openapi.connect()
+                    if word == os.getenv("DEVICE_1"):
+                        commands = {'commands': [{'code':'switch_1','value': True}]}	
+                        openapi.post(os.getenv("DEVICE_1_ID"), commands)
+                    if word == os.getenv("DEVICE_2"):
+                        commands = {'commands': [{'code':'switch_1','value': True}]}	
+                        openapi.post(os.getenv("DEVICE_2_ID"), commands)
+                elif similarity < 0.001:
+                    openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
+                    openapi.connect()
+                    if word == os.getenv("DEVICE_1"):
+                        commands = {'commands': [{'code':'switch_1','value': False}]}	
+                        openapi.post(os.getenv("DEVICE_1_ID"), commands)
+                    if word == os.getenv("DEVICE_2"):
+                        commands = {'commands': [{'code':'switch_1','value': False}]}	
+                        openapi.post(os.getenv("DEVICE_2_ID"), commands)
+        else:
+            pass
     
     apps = [
     "youtube",
