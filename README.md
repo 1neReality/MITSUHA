@@ -128,7 +128,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 7. Create a Tuya cloud project if you want to control your smart devices with the AI, for example you can say 'Hey Megumin, can you turn on my LEDs' it's a bit complicated though and I'll probably make a video on it later because it's hard to explain through text, but here's a guide that should help you out: [https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8)
 
 
-### Installation
+### Automatic Installation
 1. Open cmd and cd into the folder where you downloaded the prerelease source code
 2. Run `python setup.py` and follow the instructions
 3. Edit the variables in `.env`
