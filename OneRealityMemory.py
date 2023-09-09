@@ -1,7 +1,6 @@
 import speech_recognition as sr
 import os
 import winsound
-import webbrowser
 import openai
 import re
 import torch
@@ -9,7 +8,6 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from tuya_connector import TuyaOpenAPI
 import string
 from AppOpener import open as start, close as end
-import re
 from llama_cpp import Llama
 import json
 from hyperdb import HyperDB
@@ -77,6 +75,32 @@ print('''
         Bridging the real and virtual worlds
 ''')
 
+# tts function
+def voice_vits(text, id=0, format="wav", lang="auto", length=1, noise=0.667, noisew=0.8, max=50):
+    fields = {
+        "text": text,
+        "id": str(id),
+        "format": format,
+        "lang": lang,
+        "length": str(length),
+        "noise": str(noise),
+        "noisew": str(noisew),
+        "max": str(max)
+    }
+    boundary = '----VoiceConversionFormBoundary' + ''.join(random.sample(string.ascii_letters + string.digits, 16))
+
+    m = MultipartEncoder(fields=fields, boundary=boundary)
+    headers = {"Content-Type": m.content_type}
+    url = f"{base}/voice"
+
+    res = requests.post(url=url, data=m, headers=headers)
+    path = f"{abs_path}/out.wav"
+
+    with open(path, "wb") as f:
+        f.write(res.content)
+    print(path)
+    return path
+
 # define function to check if user has said "bye", "goodbye", or "see you"
 def check_goodbye(transcript):
     goodbye_words = ["bye", "goodbye", "see you"]
@@ -128,6 +152,8 @@ while True:
         
     if os.getenv("LANGUAGE") == "English":
         LANGUAGE = "en"
+    elif os.getenv("LANGUAGE") == "한국어":
+        LANGUAGE = "ko"
     elif os.getenv("LANGUAGE") == "日本語":
         LANGUAGE = "ja"
     elif os.getenv("LANGUAGE") == "简体中文":
@@ -282,16 +308,9 @@ while True:
 
     response = response.replace("\n", " ")
     response = response.replace('"', '\\"')
-    VITS_MODEL_PATH = os.getenv("VITS_MODEL_PATH")
-    VITS_CONFIG_PATH = os.getenv("VITS_CONFIG_PATH")
-    VITS_OUTPUT_PATH = os.getenv("VITS_OUTPUT_PATH")
-    LANGUAGE = os.getenv("LANGUAGE")
-    VITS_SPEAKER_NAME = os.getenv("VITS_SPEAKER_NAME")
-    command = f'wsl ~ -e sh -c "export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH; python3.8 VITS-fast-fine-tuning/cmd_inference.py -m {VITS_MODEL_PATH} -c {VITS_CONFIG_PATH} -o {VITS_OUTPUT_PATH} -l {LANGUAGE} -t \\"{response}\\" -s "{VITS_SPEAKER_NAME}""'
-    os.system(command.format(response=response))
+    voice_vits(text=response, lang=LANGUAGE)
     
-    winsound.PlaySound(r"output.wav", winsound.SND_FILENAME)
-    os.remove(r"output.wav")
+    winsound.PlaySound(r"out.wav", winsound.SND_FILENAME)
 
     if check_goodbye(trans['text']):
         break
