@@ -207,7 +207,7 @@ Project Link: [https://github.com/DogeLord081/OneReality](https://github.com/Dog
 * [AI Waifu Vtuber](https://github.com/ardha27/AI-Waifu-Vtuber)
 * [SchizoDev](https://youtu.be/dKFnJCtcfMk)
 * xor
-* @jaxfry
+* jaxfry
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
