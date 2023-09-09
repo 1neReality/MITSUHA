@@ -88,11 +88,11 @@ A virtual waifu / assistant that you can speak to through your mic and it'll spe
 * It can speak back to you in Japanese or English
 * Has short-term memory (can remember things from the current conversation. Multi-conversation memory would take too long to respond and cost too much on the OpenAI API)
 * Can open apps as long as you specify the app path in the code
-* Knows everything ChatGPT does since they use pretty much the same models (ChatGPT uses the GPT-3.5-Turbo model while this uses the text-davinci-003 model)
+* Smarter than you
 
 More features I'm planning to add soon in the [roadmap](https://github.com/DogeLord081/OneReality#roadmap). Also, here's a summary of how it works for those of you who want to know:
 
-First, the Python package SpeechRecognition recognizes what you say into your mic, then that speech is written into an audio (.wav) file, which is sent to OpenAI's Whisper speech-to-text transcription AI, and the transcribed result is printed in the terminal and sent to OpenAI's GPT-3, then GPT's response will be printed in the terminal and sent to PiperTTS which will generate and play an audio file with Megumin's voice reading the text (In English). All of this happens anywhere between 2-10 seconds, depending on the length of what you say, the length of what the AI says, and your GPU or CPU.
+First, the Python package SpeechRecognition recognizes what you say into your mic, then that speech is written into an audio (.wav) file, which is sent to OpenAI's Whisper speech-to-text transcription AI, and the transcribed result is printed in the terminal and written in a conversation.jsonl which the vector database hyperdb uses cosine similarity on to find 2 of the closest matches to what you said in the conversation.jsonl and appends that to the prompt to give Megumin context, the response is then passed through multiple NLE RTE and other checks to see if you want to open an app or do something with your smarthome, the prompt is then sent to llama.cpp, and the response from Megumin is printed to the terminal and appended to conversation.jsonl, and finally, the response is spoken by VITS TTS.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -101,14 +101,15 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 ### Built With
 
 * [Python](https://www.python.org)
-* [GPT](https://openai.com/gpt-4)
+* [Llama-cpp-python](https://github.com/abetlen/llama-cpp-python)
 * [Whisper](https://openai.com/research/whisper)
 * [SpeechRecognition](https://pypi.org/project/SpeechRecognition/)
 * [PocketSphinx](https://pypi.org/project/pocketsphinx/)
-* [Google Translate](https://translate.google.com)
-* [VoiceVox](https://voicevox.hiroshiba.jp)
-* [PiperTTS](https://github.com/rhasspy/piper)
-
+* [VITS-fast-fine-tuning](https://github.com/Plachtaa/VITS-fast-fine-tuning)
+* [VITS-simple-api](https://github.com/Artrajz/vits-simple-api)
+* [HyperDB](https://github.com/jdagdelen/hyperDB)
+* [Sentence Transformers](https://github.com/UKPLab/sentence-transformers)
+* [Tuya Cloud IoT](https://iot.tuya.com/)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
