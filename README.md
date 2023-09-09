@@ -159,7 +159,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 - [ ] More languages for the AI's voice
   - [x] Japanese
   - [x] English
-  - [ ] Korean
+  - [x] Korean
   - [x] Chinese
   - [ ] Spanish
   - [ ] Indonesian
