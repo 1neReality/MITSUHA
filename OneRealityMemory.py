@@ -1,9 +1,7 @@
 import speech_recognition as sr
 import os
-import pyaudio
+import winsound
 import webbrowser
-import requests
-import subprocess
 import openai
 import re
 import torch
@@ -17,10 +15,13 @@ import json
 from hyperdb import HyperDB
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
-import wave
+import random
+from requests_toolbelt.multipart.encoder import MultipartEncoder
+import requests
 
-tuya = True
-
+# VITS api
+abs_path = os.path.dirname(__file__)
+base = "http://127.0.0.1:23456"
 
 #Load env variables
 load_dotenv()
@@ -47,10 +48,9 @@ LLM = Llama(model_path=os.getenv("LLM"), n_ctx=2048, n_gpu_layers=-1, verbose=Fa
 openai.api_key = os.getenv("OPENAI_KEY")
 
 # set up Tuya API credentials
-if tuya == True:
-    ACCESS_ID = os.getenv("TUYA_ID")
-    ACCESS_KEY = os.getenv("TUYA_SECRET")
-    API_ENDPOINT = os.getenv("TUYA_ENDPOINT")
+ACCESS_ID = os.getenv("TUYA_ID")
+ACCESS_KEY = os.getenv("TUYA_SECRET")
+API_ENDPOINT = os.getenv("TUYA_ENDPOINT")
 
 # set up microphone and speech recognition
 r = sr.Recognizer()
@@ -155,45 +155,45 @@ while True:
         
     documents.append(new_line)
     db.save("conversation.pickle.gz")
-    if tuya == True:
-        devices = [
-            "gaming mode",
-            "night light",
-            "nightlight"
-        ]
 
-        sentence = "Activate [device]."
-        input_sentence = trans['text'].lower()
+    devices = [
+        "gaming mode",
+        "night light",
+        "nightlight"
+    ]
 
-        for word in devices:
-            if word in input_sentence:
-                modified_sentence = replace_device(sentence, word)
+    sentence = "Activate [device]."
+    input_sentence = trans['text'].lower()
 
-                input_sentence = keep_sentence_with_word(input_sentence, word)
-                input_sentence = input_sentence.translate(str.maketrans('', '', string.punctuation))
-                print(input_sentence)
-                similarity = (test_equivalence(modified_sentence, input_sentence))
-                print(similarity)
-                if similarity >= 0.5:
-                    openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
-                    openapi.connect()
-                    if word == os.getenv("DEVICE_1"):
-                        commands = {'commands': [{'code':'switch_1','value': True}]}	
-                        openapi.post(os.getenv("DEVICE_1_ID"), commands)
-                    if word == os.getenv("DEVICE_2"):
-                        commands = {'commands': [{'code':'switch_1','value': True}]}	
-                        openapi.post(os.getenv("DEVICE_2_ID"), commands)
-                elif similarity < 0.001:
-                    openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
-                    openapi.connect()
-                    if word == os.getenv("DEVICE_1"):
-                        commands = {'commands': [{'code':'switch_1','value': False}]}	
-                        openapi.post(os.getenv("DEVICE_1_ID"), commands)
-                    if word == os.getenv("DEVICE_2"):
-                        commands = {'commands': [{'code':'switch_1','value': False}]}	
-                        openapi.post(os.getenv("DEVICE_2_ID"), commands)
-        else:
-            pass
+    for word in devices:
+        if word in input_sentence:
+            modified_sentence = replace_device(sentence, word)
+
+            input_sentence = keep_sentence_with_word(input_sentence, word)
+            input_sentence = input_sentence.translate(str.maketrans('', '', string.punctuation))
+            print(input_sentence)
+            similarity = (test_equivalence(modified_sentence, input_sentence))
+            print(similarity)
+            if similarity >= 0.5:
+                openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
+                openapi.connect()
+                if word == os.getenv("DEVICE_1"):
+                    commands = {'commands': [{'code':'switch_1','value': True}]}	
+                    openapi.post(os.getenv("DEVICE_1_ID"), commands)
+                if word == os.getenv("DEVICE_2"):
+                    commands = {'commands': [{'code':'switch_1','value': True}]}	
+                    openapi.post(os.getenv("DEVICE_2_ID"), commands)
+            elif similarity < 0.001:
+                openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
+                openapi.connect()
+                if word == os.getenv("DEVICE_1"):
+                    commands = {'commands': [{'code':'switch_1','value': False}]}	
+                    openapi.post(os.getenv("DEVICE_1_ID"), commands)
+                if word == os.getenv("DEVICE_2"):
+                    commands = {'commands': [{'code':'switch_1','value': False}]}	
+                    openapi.post(os.getenv("DEVICE_2_ID"), commands)
+    else:
+        pass
     
     apps = [
     "youtube",
@@ -287,37 +287,11 @@ while True:
     VITS_OUTPUT_PATH = os.getenv("VITS_OUTPUT_PATH")
     LANGUAGE = os.getenv("LANGUAGE")
     VITS_SPEAKER_NAME = os.getenv("VITS_SPEAKER_NAME")
-
-    command = f'python3.8 VITS-fast-fine-tuning/cmd_inference.py -m {VITS_MODEL_PATH} -c {VITS_CONFIG_PATH} -o {VITS_OUTPUT_PATH} -l {LANGUAGE} -t "{response}" -s "{VITS_SPEAKER_NAME}"'
-    subprocess.run(command, shell=True)
-
+    command = f'wsl ~ -e sh -c "export LD_LIBRARY_PATH=/usr/lib/wsl/lib:$LD_LIBRARY_PATH; python3.8 VITS-fast-fine-tuning/cmd_inference.py -m {VITS_MODEL_PATH} -c {VITS_CONFIG_PATH} -o {VITS_OUTPUT_PATH} -l {LANGUAGE} -t \\"{response}\\" -s "{VITS_SPEAKER_NAME}""'
+    os.system(command.format(response=response))
     
-    if os.path.exists(r"output.wav"):
-        pyaudio = pyaudio.PyAudio()
-        wf = wave.open(r"output.wav", "rb")
-        # Initialize PyAudio
-        p = pyaudio.PyAudio()
-
-        # Open a stream
-        stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
-                        channels=wf.getnchannels(),
-                        rate=wf.getframerate(),
-                        output=True)
-
-        # Read and play the audio data in chunks
-        chunk_size = 1024
-        data = wf.readframes(chunk_size)
-
-        while data:
-            stream.write(data)
-            data = wf.readframes(chunk_size)
-
-        # Close the stream and PyAudio
-        stream.stop_stream()
-        stream.close()
-
-        p.terminate()
-        os.remove(r"output.wav")
+    winsound.PlaySound(r"output.wav", winsound.SND_FILENAME)
+    os.remove(r"output.wav")
 
     if check_goodbye(trans['text']):
         break
