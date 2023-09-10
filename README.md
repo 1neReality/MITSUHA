@@ -123,35 +123,26 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 
 ### Prerequisites
 
-1. [Purchase an OpenAI API key](https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key). It's extremely affordable, since it's pay as you go, and you only need it for whisper stt which is like $0.36 per hour of audio transcribed. Anyways, if you're talking to AI Megumin for more than an hour a month, that might be a you problem
+1. [Purchase an OpenAI API key](https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key). It's extremely affordable since it's pay-as-you-go, and you only need it for whisper stt which is like $0.36 per hour of audio transcribed. Anyways, if you're talking to AI Megumin for more than an hour a month, that might be a you problem
 2. [Install Python](https://www.python.org/downloads/) and set it as an environment variable in PATH
 3. [Download the prerelease source code](https://github.com/DogeLord081/OneReality/releases/tag/v2.0.0-beta)
-6. Install [GIT](https://git-scm.com/downloads)
-7. Create a Tuya cloud project if you want to control your smart devices with the AI, for example you can say 'Hey Megumin, can you turn on my LEDs' it's a bit complicated though and I'll probably make a video on it later because it's hard to explain through text, but here's a guide that should help you out: [https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8)
+6. [Install GIT](https://git-scm.com/downloads)
+7. [Install VTube Studio on Steam](https://store.steampowered.com/app/1325860/VTube_Studio/)
+8. [Install VB Cable Audio Driver](https://vb-audio.com/Cable/), but don't set it as your audio devices just yet
+9. Open Control Panel > Sound and Hardware > Sound > Recording > find CABLE Output > right-click > Properties > Listen > Check `Listen to this device` > For `Playback through this device`, select your headphones or speakers
+10. Create a Tuya cloud project if you want to control your smart devices with the AI, for example, you can say 'Hey Megumin, can you turn on my LEDs' it's a bit complicated though and I'll probably make a video on it later because it's hard to explain through text, but here's a guide that should help you out: [https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8)
 
 
 ### Automatic Installation
 1. Open cmd and cd into the folder where you downloaded the prerelease source code
 2. Run `python setup.py` and follow the instructions
 3. Edit the variables in `.env`
-4. Run `OneReality.bat` and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's https://discord.gg/PN48PZEXJS
+4. Run `OneReality.bat` and while it's running, open the start menu and type `Sound Mixer Options` and open it. You might have to make Megumin say something first, but you should see Python in the App Volume list
+5. Change the output to `CABLE Input (VB-Audio Virtual Cable)`
+6. Open VTube Studio > Settings icon > Scroll to Microphone Settings > Select Microphone > CABLE Output (VB-Audio Virtual Cable) > Person with settings icon > Scroll to Mouth Smile > Copy [these settings](https://imgur.com/a/pf4SCSC) > Scroll to Mouth Open > Copy [these settings](https://imgur.com/a/dvWLloq)
+7. You're good to go! If you run into any issues, let me know on Discord and I can help you. Once again, it's https://discord.gg/PN48PZEXJS
+8. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically ends the program, otherwise you can just ctrl + c or close the window
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-### Manual Installation
-1. In the terminal that pops up, run `git clone https://github.com/Plachtaa/VITS-fast-fine-tuning`
-2. Run `python -m pip install cmake`
-3. run `cd VITS-fast-fine-tuning` then run `python -m pip install -r requirements.txt`, if you have some building wheels error for pyopenjtalk, try `python -m pip install pyopenjtalk==0.1.3 --no-build-isolation --no-cache-dir`, this is a huge problem right now and may or may not work, which is a big part of why this is a prerelease. I'm trying to get this working without pyopenjtalk, but it's not easy
-4. Download an LLM and put it in your OneReality folder. Personally I used [wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin](https://huggingface.co/TheBloke/WizardLM-1.0-Uncensored-Llama2-13B-GGML/blob/main/wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin) but it really depends on your hardware
-5. Extract the `OneReality-main` folder from prerequisites step 3 so that it is only one folder deep and rename the folder to just `OneReality`
-6. Install the Python dependencies with pip by cding into the folder and running `pip install -r requirements.txt` in cmd or powershell
-7. Download `G_latest.pth` and `finetune_speaker.json` from [Huggingface](https://huggingface.co/DogeLord/megumin-VITS/tree/main) and make a folder called `model` in the `OneReality` folder and put the two files in it
-8. Edit the variables in `.env`
-9. Run `OneReality.bat` and you're good to go! If you run into any issues, let me know on Discord and I might be able to help you. Once again, it's https://discord.gg/PN48PZEXJS
-10. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically ends the program, otherwise you can just ctrl + c or close the window
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- ROADMAP -->
@@ -173,6 +164,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 - [x] Easier setup
 - [ ] Compiling into one exe
 - [x] Localized
+- [ ] VTube Studio lip-sync without driver like in [this project](https://github.com/AlizerUncaged/desktop-waifu) but I don't really understand the VTube Studio API used here
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
