@@ -124,7 +124,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 1. [Purchase an OpenAI API key](https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key). It's extremely affordable, since it's pay as you go, and you only need it for whisper stt which is like $0.36 per hour of audio transcribed. Anyways, if you're talking to AI Megumin for more than an hour a month, that might be a you problem
 2. [Install Python](https://www.python.org/downloads/) and set it as an environment variable in PATH
 3. [Download the prerelease source code](https://github.com/DogeLord081/OneReality/releases/tag/v2.0.0-beta)
-6. Install [GIT] (https://git-scm.com/downloads)
+6. Install [GIT](https://git-scm.com/downloads)
 7. Create a Tuya cloud project if you want to control your smart devices with the AI, for example you can say 'Hey Megumin, can you turn on my LEDs' it's a bit complicated though and I'll probably make a video on it later because it's hard to explain through text, but here's a guide that should help you out: [https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8)
 
 
