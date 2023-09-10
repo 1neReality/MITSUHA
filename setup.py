@@ -1,3 +1,15 @@
+print('''
+  _____              ______             _ _           
+ / ___ \            (_____ \           | (_)_         
+| |   | |____   ____ _____) ) ____ ____| |_| |_ _   _ 
+| |   | |  _ \ / _  |_____ ( / _  ) _  | | |  _) | | |
+| |___| | | | ( (/ /      | ( (/ ( ( | | | | |_| |_| |
+ \_____/|_| |_|\____)     |_|\____)_||_|_|_|\___)__  |
+                                               (____/
+        Bridging the real and virtual worlds
+                [Install Script]
+''')
+
 import os
 os.system("pip install -r requirements.txt")
 
@@ -12,9 +24,8 @@ cmd("pip install cmake")
 # run pip install in VITS-fast-fine-tuning directory
 # if an error occurs, try to run the print to console
 cmd("pip install cython")
-cmd("pip install -r vits-simple-api-onereality/requirements.txt")
 
-print("Now please download an LLM model and put it in your OneReality folder. You could use https://tinyurl.com/onereality if you want.")
+print("Now please download an LLM model and put it in your OneReality folder. I suggest WizardLM https://tinyurl.com/onereality which is what I use.")
 print("Press any key to continue after you downloaded the model.")
 def wait():
     x = input("Have you downloaded a model? [y/n] ")
@@ -45,7 +56,7 @@ if response.status_code == 200:
 else:
     print(f"Failed to download the file. HTTP status code: {response.status_code}")
 
-print("Do you want to use tuya? [y/n]")
+print("Do you want to use tuya? (Basically smart home control with the AI but a bit complicated to set up. Check the prerequisites on my README on my Github.) [y/n]")
 if input() == "n":
     print("Okay, Removing tuya from script...")
 else:
@@ -62,7 +73,7 @@ with open ("OneRealityMemory.py", "w") as f:
     
 print("If you want to use tuya, please edit the OneRealityENMemory.py file! and set tuya = True")
 print("SETUP COMPLEATE! Please edit the env file!")
-print("Note if you encounter any errors when running OneReality.bat, please read the error like it might say install this or that. if you can't figure it out, please contact me on discord: https://discord.gg/PN48PZEXJS")
+print("Note if you encounter any errors when running OneReality.bat, please read the error, it might say install this or that. if you can't figure it out, please contact me on discord: https://discord.gg/PN48PZEXJS")
 
 
 print("Would you like to go through the setup here or just exit? ONLY RUN THIS ONCE! [y/n]")
@@ -72,7 +83,10 @@ if input() == "y":
 else:
     exit()
 
-print("Leave any blank if you want to use the default value or if it doesn't apply to you.")
+print("Leave any blank if you want to use the default value or if it doesn't apply to you, like if you aren't using Tuya.")
+print("--------------------")
+print("Supported languages are: English, 한국어, 日本語, or 简体中文")
+language = input("What language do you want to use? ")
 print("--------------------")
 name = input("What is your name? ")
 print("--------------------")
@@ -95,6 +109,7 @@ print("To add devices, please edit the .env file!")
 # Now we need to write the data to the env file
 with open(".env", "r") as f:
     data = f.read()
+    data = data.replace("LANGUAGE", language)
     data = data.replace("NAME", name)
     data = data.replace("APIKEY", api_key)
     data = data.replace("TUYAID", tuya_id)
@@ -106,4 +121,4 @@ with open(".env", "r") as f:
 with open(".env", "w") as f:
     f.write(data)
     
-print("SETUP COMPLEATE! Please edit the env file if you need to add devices!")
+print("SETUP COMPLEATE! Please edit the env file if you need to add Tuya devices or if you want to change anything else! Thanks for using OneReality!")
