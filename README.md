@@ -85,12 +85,14 @@ Click on image for demo video
 A virtual waifu / assistant that you can speak to through your mic and it'll speak back to you! Has many features such as:
 
 * You can speak to her with a mic
-* It can speak back to you in Japanese or English
-* Has short-term memory (can remember things from the current conversation. Multi-conversation memory would take too long to respond and cost too much on the OpenAI API)
-* Can open apps as long as you specify the app path in the code
+* It can speak back to you
+* Has short-term memory and long-term memory
+* Can open apps
 * Smarter than you
+* Fluent in  English, Japanese, Korean, and Chinese
+* Can control your smart home like Alexa if you set up Tuya (more info in [Prerequisites](https://github.com/DogeLord081/OneReality#prerequisites))
 
-More features I'm planning to add soon in the [roadmap](https://github.com/DogeLord081/OneReality#roadmap). Also, here's a summary of how it works for those of you who want to know:
+More features I'm planning to add soon in the [Roadmap](https://github.com/DogeLord081/OneReality#roadmap). Also, here's a summary of how it works for those of you who want to know:
 
 First, the Python package SpeechRecognition recognizes what you say into your mic, then that speech is written into an audio (.wav) file, which is sent to OpenAI's Whisper speech-to-text transcription AI, and the transcribed result is printed in the terminal and written in a conversation.jsonl which the vector database hyperdb uses cosine similarity on to find 2 of the closest matches to what you said in the conversation.jsonl and appends that to the prompt to give Megumin context, the response is then passed through multiple NLE RTE and other checks to see if you want to open an app or do something with your smarthome, the prompt is then sent to llama.cpp, and the response from Megumin is printed to the terminal and appended to conversation.jsonl, and finally, the response is spoken by VITS TTS.
 
