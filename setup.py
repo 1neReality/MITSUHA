@@ -104,7 +104,7 @@ print("--------------------")
 model = input("What is the name of your model file? [Leave blank for default] (wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin)")
 print("--------------------")
 
-print("To add devices, please edit the .env file!")
+print("To add Tuya devices, please edit the .env file!")
 
 # Now we need to write the data to the env file
 with open(".env", "r") as f:
