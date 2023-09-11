@@ -28,7 +28,7 @@ cmd("pip install cython")
 print("Now please download an LLM model and put it in your OneReality folder. I suggest WizardLM https://tinyurl.com/onereality which is what I use.")
 print("Press any key to continue after you downloaded the model.")
 def wait():
-    x = input("Have you downloaded a model? [y/n] ")
+    x = input("Have you downloaded a model and put it in the OneReality folder? [y/n] ")
     if x == "y":
         print("Okay, continuing...")
     else:
