@@ -125,7 +125,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 
 1. [Purchase an OpenAI API key](https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key). It's extremely affordable since it's pay-as-you-go, and you only need it for whisper stt which is like $0.36 per hour of audio transcribed. Anyways, if you're talking to AI Megumin for more than an hour a month, that might be a you problem
 2. [Install Python](https://www.python.org/downloads/) and set it as an environment variable in PATH
-3. [Download the prerelease source code](https://github.com/DogeLord081/OneReality/releases/tag/v2.0.0)
+3. [Download the latest release source code](https://github.com/DogeLord081/OneReality/releases/latest)
 6. [Install GIT](https://git-scm.com/downloads)
 7. [Install VTube Studio on Steam](https://store.steampowered.com/app/1325860/VTube_Studio/)
 8. [Download Megumin's VTube Studio Model](https://www.reddit.com/r/Megumin/comments/eibk52/i_ripped_the_megumin_model_from_the_isekai_app/)
