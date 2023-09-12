@@ -35,6 +35,6 @@ langid
 phonemizer==3.2.1
 transformers
 pydantic==2.3.0
-llama-cpp-python
+llama-cpp-python==0.1.78
 logzero
 requests_toolbelt 
