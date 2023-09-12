@@ -66,8 +66,6 @@ model = AutoModelForSequenceClassification.from_pretrained(os.getenv("NLI_RTE_TR
 
 # set up Llama model
 lore = os.getenv("LORE")
-with open(r"conversation.txt", "r") as c:
-        conversation = c.read
 
 print('''
   _____              ______             _ _           
