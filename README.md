@@ -151,6 +151,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 ## Roadmap
 
 - [x] Long-term memory
+- [x] Time and date awareness
 - [ ] Virtual reality / augmented reality / mixed reality integration
 - [ ] Gatebox-style hologram
 - [ ] Animatronic body
