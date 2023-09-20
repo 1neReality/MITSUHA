@@ -16,6 +16,7 @@ from dotenv import load_dotenv
 import random
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import requests
+from datetime import datetime
 ###
 # Set to True if you want to use tuya
 tuya = True
@@ -144,6 +145,10 @@ while True:
     with mic as source:
         audio = r.listen(source, timeout = None)
 
+    now = datetime.now()
+    date = now.strftime("%m/%d/%Y")
+    time = now.strftime("%H:%M:%S")
+
     test_text = r.recognize_sphinx(audio)
     if len(test_text) == 0:
         continue
@@ -176,7 +181,7 @@ while True:
         pass
     
     text = trans['text']
-    new_line = {"role": "User", "content": text}
+    new_line = {"role": "User", "date": date, "time": time, "content": text}
     
     print("You:" + trans['text'])
     with open(r"conversation.jsonl", "a") as c:
@@ -288,8 +293,12 @@ while True:
             i += 2  # Skip the next line as it's already included
         else:
             i += 1
+            
+    now = datetime.now()
+    date = now.strftime("%m/%d/%Y")
+    time = now.strftime("%H:%M:%S")
 
-    prompt = lore + "\n" + "\n".join(str(json.dumps(doc, indent=None)) for doc in documents) + "\n" + str(new_line) + "\n{'role': 'Megumin', 'content': "
+    prompt = lore + "\n" + "\n".join(str(json.dumps(doc, indent=None)) for doc in documents) + "\n" + str(new_line) + f"\n{{'role': 'Megumin', 'date': {date}, 'time': {time}, 'content': "
     
     # generate a response (takes several seconds)
     response = LLM(prompt, echo=False, stream=False, stop=["{"])
@@ -299,9 +308,10 @@ while True:
     response = response.encode("ascii", "ignore")
     response = response.decode()
     response = response.strip(" '}")
+    response = response.replace('"', '')
     print("Megumin: " + response)
 
-    new_line = {"role": "Megumin", "content": response}
+    new_line = {"role": "Megumin", "date": date, "time": time, "content": response}
     
     with open(r"conversation.jsonl", "a") as c:
         c.write("\n" + json.dumps(new_line))
