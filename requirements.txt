@@ -38,3 +38,4 @@ pydantic==2.3.0
 llama-cpp-python==0.1.78
 logzero
 requests_toolbelt 
+datetime
