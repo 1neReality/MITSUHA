@@ -11,6 +11,17 @@ print('''
 ''')
 
 import os
+
+x = input("Are you on windows and have an Nvidia GPU? [windows/linux/neither] ")
+if x == "windows":
+  print("Okay, installing pytorch with CUDA 11.7...")
+  os.system("pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117")
+elif x == "linux":
+  print("Okay, installing pytorch with CUDA 11.7...")
+  os.system("pip3 install torch torchvision torchaudio")
+elif x == "neither":
+  print("If you're on Mac or don't have an Nvidia GPU, unfortunately you cannot use GPU mode. Continuing with CPU...")
+  
 os.system("pip install -r requirements.txt")
 
 import requests
