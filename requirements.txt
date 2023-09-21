@@ -9,7 +9,6 @@ librosa
 numpy==1.23.3
 scipy
 MarkupSafe==2.1.2
-torch
 unidecode
 six==1.16.0
 openjtalk==0.3.0.dev2
