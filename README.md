@@ -126,13 +126,14 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 1. [Purchase an OpenAI API key](https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key). It's extremely affordable since it's pay-as-you-go, and you only need it for whisper stt which is like $0.36 per hour of audio transcribed. Anyways, if you're talking to AI Megumin for more than an hour a month, that might be a you problem
 2. [Install Python](https://www.python.org/downloads/) and set it as an environment variable in PATH
 3. [Install GIT](https://git-scm.com/downloads)
-4. [Install VTube Studio on Steam](https://store.steampowered.com/app/1325860/VTube_Studio/)
-5. [Download Megumin's VTube Studio Model](https://www.reddit.com/r/Megumin/comments/eibk52/i_ripped_the_megumin_model_from_the_isekai_app/)
-6. Extract the downloaded zip so it's only one folder deep (you should be able to open the folder and have all the files there, not one folder containing everything)
-7. Open VTube Studio > Settings icon > `Open Data Folder` and move the folder there > Person icon > c001_f_costume_kouma
-8. [Install VB Cable Audio Driver](https://vb-audio.com/Cable/), but don't set it as your audio devices just yet
-9. Open Control Panel > Sound and Hardware > Sound > Recording > find CABLE Output > right-click > Properties > Listen > Check `Listen to this device` > For `Playback through this device`, select your headphones or speakers
-10. Create a Tuya cloud project if you want to control your smart devices with the AI, for example, you can say 'Hey Megumin, can you turn on my LEDs' it's a bit complicated though and I'll probably make a video on it later because it's hard to explain through text, but here's a guide that should help you out: [https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8)
+4. [Install CUDA 11.7 if you have an Nvidia GPU](https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_local)
+5. [Install VTube Studio on Steam](https://store.steampowered.com/app/1325860/VTube_Studio/)
+6. [Download Megumin's VTube Studio Model](https://www.reddit.com/r/Megumin/comments/eibk52/i_ripped_the_megumin_model_from_the_isekai_app/)
+7. Extract the downloaded zip so it's only one folder deep (you should be able to open the folder and have all the files there, not one folder containing everything)
+8. Open VTube Studio > Settings icon > `Open Data Folder` and move the folder there > Person icon > c001_f_costume_kouma
+9. [Install VB Cable Audio Driver](https://vb-audio.com/Cable/), but don't set it as your audio devices just yet
+10. Open Control Panel > Sound and Hardware > Sound > Recording > find CABLE Output > right-click > Properties > Listen > Check `Listen to this device` > For `Playback through this device`, select your headphones or speakers
+11. Create a Tuya cloud project if you want to control your smart devices with the AI, for example, you can say 'Hey Megumin, can you turn on my LEDs' it's a bit complicated though and I'll probably make a video on it later because it's hard to explain through text, but here's a guide that should help you out: [https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8)
 
 
 ### Automatic Installation
