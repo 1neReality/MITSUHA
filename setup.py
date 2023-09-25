@@ -21,11 +21,23 @@ if x == "windows":
     print("Sucess! Now installing llama-cpp-python with CuBLAS acceleration...")
     os.system('set "CMAKE_ARGS=-Tv143,cuda=11.7 -DLLAMA_CUBLAS=on"')
     os.system('python -m pip install llama-cpp-python --prefer-binary --no-cache-dir --extra-index-url=https://jllllll.github.io/llama-cpp-python-cuBLAS-wheels/AVX2/cu122')
+  if y == "AMD":
+    print("Okay, installing llama-cpp-python with CLBlast acceleration")
+    os.system('LLAMA_CLBLAST=1 CMAKE_ARGS="-DLLAMA_CLBLAST=on" FORCE_CMAKE=1 pip install llama-cpp-python --no-cache-dir')
+  if y == "CPU":
+    print("Okay, installing llama-cpp-python with OpenBLAS acceleration")
+    os.system('LLAMA_OPENBLAS=on pip install --force-reinstall --ignore-installed --no-cache-dir llama-cpp-python')
+    with open ("OneRealityMemory.py", "r") as f:
+      data = f.read()
+      data = data.replace(" n_gpu_layers=-1,", "")
+    
+    with open ("OneRealityMemory.py", "w") as f:
+      f.write(data)
 elif x == "linux":
   print("Okay, installing pytorch with CUDA 11.7...")
   os.system("pip3 install torch torchvision torchaudio")
 elif x == "neither":
-  print("If you're on Mac or don't have an Nvidia GPU, unfortunately you cannot use GPU mode. Continuing with CPU...")
+  print("If you're on Mac, unfortunately you cannot use GPU mode. Continuing with CPU...")
   
 os.system("pip install -r requirements.txt")
 
@@ -75,17 +87,15 @@ else:
 print("Do you want to use tuya? (Basically smart home control with the AI but a bit complicated to set up. Check the prerequisites on my README on my Github.) [y/n]")
 if input() == "n":
     print("Okay, Removing tuya from script...")
+  
+    with open ("OneRealityMemory.py", "r") as f:
+      data = f.read()
+      data = data.replace("tuya = True", "tuya = False")
+    
+    with open ("OneRealityMemory.py", "w") as f:
+      f.write(data)
 else:
     print("Okay, continuing...")
-    
-
-    
-with open ("OneRealityMemory.py", "r") as f:
-    data = f.read()
-    data = data.replace("tuya = True", "tuya = False")
-    
-with open ("OneRealityMemory.py", "w") as f:
-    f.write(data)
     
 print("If you want to use tuya, please edit the OneRealityENMemory.py file! and set tuya = True")
 print("SETUP COMPLEATE! Please edit the env file!")
