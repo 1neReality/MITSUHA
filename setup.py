@@ -53,7 +53,7 @@ cmd("pip install cmake")
 # if an error occurs, try to run the print to console
 cmd("pip install cython")
 
-print("Now please download an LLM model and put it in your OneReality folder. I suggest WizardLM https://tinyurl.com/onereality which is what I use.")
+print("Now please download an LLM model and put it in your OneReality folder. I suggest WizardLM https://huggingface.co/TheBloke/Wizard-Vicuna-13B-Uncensored-GGUF/blob/main/Wizard-Vicuna-13B-Uncensored.Q3_K_S.gguf which is what I use.")
 print("Press any key to continue after you downloaded the model.")
 def wait():
     x = input("Have you downloaded a model and put it in the OneReality folder? [y/n] ")
