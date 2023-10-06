@@ -14,7 +14,7 @@ import os
 
 x = input("Which OS are you on? [windows/linux/neither] ")
 if x == "windows":
-  y == input("Which GPU do you have? [Nvidia/AMD/CPU] ")
+  y = input("Which GPU do you have? [Nvidia/AMD/CPU] ")
   if y == "Nvidia":
     print("Okay, installing pytorch with CUDA 11.7...")
     os.system("pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117")
