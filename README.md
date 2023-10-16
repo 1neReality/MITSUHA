@@ -41,7 +41,7 @@
     Bridging the real and virtual worlds
     <br />
     <br />
-    <a href="https://youtu.be/eZridsHbooE">Demo Video (Lipsynced to Megumin in VTube Studio)</a>
+    <a href="https://youtu.be/kcMlo0uhmTU?si=OvS0A0dVHx56uc33">Demo Video (Lipsynced to Megumin in VTube Studio)</a>
     ·
     <a href="https://github.com/DogeLord081/OneReality/issues">Report Bug</a>
     ·
