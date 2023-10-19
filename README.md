@@ -127,7 +127,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 2. [Install Python 3.10.11](https://www.python.org/downloads/release/python-31011/) and set it as an environment variable in PATH
 3. [Install GIT](https://git-scm.com/downloads)
 4. [Install CUDA 11.7 if you have an Nvidia GPU](https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_local)
-5. [Install Visual Studio Community 2022](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
+5. [Install Visual Studio Community 2022](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false) and select `Desktop Development with C++` in the install options
 6. [Install VTube Studio on Steam](https://store.steampowered.com/app/1325860/VTube_Studio/)
 7. [Download Megumin's VTube Studio Model](https://www.reddit.com/r/Megumin/comments/eibk52/i_ripped_the_megumin_model_from_the_isekai_app/)
 8. Extract the downloaded zip so it's only one folder deep (you should be able to open the folder and have all the files there, not one folder containing everything)
