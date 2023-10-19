@@ -124,7 +124,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 ### Prerequisites
 
 1. [Purchase an OpenAI API key](https://www.windowscentral.com/software-apps/how-to-get-an-openai-api-key). It's extremely affordable since it's pay-as-you-go, and you only need it for whisper stt which is like $0.36 per hour of audio transcribed. Anyways, if you're talking to AI Megumin for more than an hour a month, that might be a you problem
-2. [Install Python](https://www.python.org/downloads/) and set it as an environment variable in PATH
+2. [Install Python 3.10.11](https://www.python.org/downloads/release/python-31011/) and set it as an environment variable in PATH
 3. [Install GIT](https://git-scm.com/downloads)
 4. [Install CUDA 11.7 if you have an Nvidia GPU](https://developer.nvidia.com/cuda-11-7-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exe_local)
 5. [Install VTube Studio on Steam](https://store.steampowered.com/app/1325860/VTube_Studio/)
