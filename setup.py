@@ -12,6 +12,8 @@ print('''
 
 import os
 
+os.system("pip install -r requirements.txt")
+
 x = input("Which OS are you on? [windows/linux/neither] ")
 if x == "windows":
   y = input("Which GPU do you have? [Nvidia/AMD/CPU] ")
@@ -38,8 +40,6 @@ elif x == "linux":
   os.system("pip3 install torch torchvision torchaudio")
 elif x == "neither":
   print("If you're on Mac, unfortunately you cannot use GPU mode. Continuing with CPU...")
-  
-os.system("pip install -r requirements.txt")
 
 import requests
 import base64
