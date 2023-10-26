@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import os
-import winsound
+import sounddevice as sd
+import soundfile as sf
 import openai
 import re
 import torch
@@ -8,7 +9,6 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from tuya_connector import TuyaOpenAPI
 import string
 from AppOpener import open as start, close as end
-from llama_cpp import Llama
 import json
 from hyperdb import HyperDB
 from sentence_transformers import SentenceTransformer
@@ -17,24 +17,84 @@ import random
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 import requests
 from datetime import datetime
+import whisperx
 ###
 # Set to True if you want to use tuya
 tuya = True
 ###
 
+#Load env variables
+load_dotenv()
+
+# ExLlamaV2
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from exllamav2 import (
+    ExLlamaV2,
+    ExLlamaV2Config,
+    ExLlamaV2Cache,
+    ExLlamaV2Tokenizer,
+)
+
+from exllamav2.generator import (
+    ExLlamaV2StreamingGenerator,
+    ExLlamaV2Sampler
+)
+
+# Initialize model and cache
+
+model_directory = os.getenv("LLM_PATH")
+
+config = ExLlamaV2Config()
+config.model_dir = model_directory
+config.prepare()
+
+
+ExLlamatokenizer = ExLlamaV2Tokenizer(config)
+model = ExLlamaV2(config)
+print("Loading model: " + model_directory)
+model.load([16, 24])
+
+cache = ExLlamaV2Cache(model)
+
+# Initialize generator
+
+generator = ExLlamaV2StreamingGenerator(model, cache, ExLlamatokenizer)
+generator.set_stop_conditions(['"}'])
+
+# Settings
+
+settings = ExLlamaV2Sampler.Settings()
+settings.temperature = 0.85
+settings.top_k = 50
+settings.top_p = 0.8
+settings.token_repetition_penalty = 1.15
+settings.disallow_tokens(ExLlamatokenizer, [ExLlamatokenizer.eos_token_id])
+
+max_new_tokens = 250
+
+# WhisperX
+device = "cuda"
+devive_index = "1"
+audio_file = r"temp.wav"
+batch_size = 16 # reduce if low on GPU mem
+compute_type = "int8" # change to "int8" if low on GPU mem (may reduce accuracy)
+language = "en"
+model = os.getenc("WHISPERX_MODEL")
+
+whisper_model = whisperx.load_model("large-v2", device, language=language, compute_type=compute_type, asr_options={"initial_prompt": "A chat between a user and an artificial intelligence assistant named M.I.T.S.U.H.A."})
+
 # VITS api
 abs_path = os.path.dirname(__file__)
 base = "http://127.0.0.1:23456"
 
-#Load env variables
-load_dotenv()
-
 # Load documents from the JSONL file
 documents = []
 
-with open("conversation.jsonl", "r") as f:
+with open("conversation.jsonl", "r", encoding="utf-8") as f:
     for line in f:
-        documents.append(json.loads(line))
+         documents.append(json.loads(line))
 
 # Instantiate HyperDB with the list of documents and the key "description"
 model = SentenceTransformer(os.getenv("SENTENCE_TRANSFORMER"))
@@ -43,9 +103,6 @@ db = HyperDB(documents, key="info.description",
 
 # Save the HyperDB instance to a file
 db.save("conversation.pickle.gz")
-
-# set up Llama
-LLM = Llama(model_path=os.getenv("LLM"), n_ctx=2048, n_gpu_layers=-1, verbose=False)
 
 # set up OpenAI API credentials
 openai.api_key = os.getenv("OPENAI_KEY")
@@ -77,6 +134,7 @@ print('''
  \_____/|_| |_|\____)     |_|\____)_||_|_|_|\___)__  |
                                                (____/
         Bridging the real and virtual worlds
+              [PROJECT M.I.T.S.U.H.A.]
 ''')
 
 # tts function
@@ -142,72 +200,56 @@ def keep_sentence_with_word(text, word):
 
 while True:
     print("Speak now!")
+    
     with mic as source:
         audio = r.listen(source, timeout = None)
-
+        
     now = datetime.now()
     date = now.strftime("%m/%d/%Y")
     time = now.strftime("%H:%M:%S")
-
+    
     test_text = r.recognize_sphinx(audio)
     if len(test_text) == 0:
         continue
     else:
         pass
-
+    
     with open("temp.wav", "wb") as f:
         f.write(audio.get_wav_data())
-        
-    if os.getenv("LANGUAGE") == "English":
-        LANGUAGE = "en"
-    elif os.getenv("LANGUAGE") == "한국어":
-        LANGUAGE = "ko"
-    elif os.getenv("LANGUAGE") == "日本語":
-        LANGUAGE = "ja"
-    elif os.getenv("LANGUAGE") == "简体中文":
-        LANGUAGE = "zh"
 
-    audio_file= open("temp.wav", "rb")
-    trans = openai.Audio.transcribe(
-        model=os.getenv("WHISPER_MODEL"),
-        file=audio_file,
-        temperature=0.1,
-        language=LANGUAGE
-    )
+    audio = whisperx.load_audio(audio_file)
+    result = whisper_model.transcribe(audio, batch_size=batch_size)
+    trans = result["segments"][0]["text"]
 
-    if len(trans['text']) == 0:
+    if len(trans) == 0:
         continue
     else:
         pass
     
-    text = trans['text']
+    text = trans
     new_line = {"role": "User", "date": date, "time": time, "content": text}
     
-    print("You:" + trans['text'])
-    with open(r"conversation.jsonl", "a") as c:
-        c.write("\n" + json.dumps(new_line))
+    print("You:" + text)
+    with open(r"conversation.jsonl", "a", encoding='UTF-8') as c:
+        c.write("\n" + json.dumps(new_line, ensure_ascii=False))
         
     documents.append(new_line)
     db.save("conversation.pickle.gz")
 
     devices = [
-        "gaming mode",
-        "night light",
-        "nightlight"
+        os.getenv("DEVICE_1"),
+        os.getenv("DEVICE_2")
     ]
-
-    sentence = "Activate [device]."
-    input_sentence = trans['text'].lower()
     if tuya == True:
+        sentence = "Activate [device]."
+        input_sentence = trans.lower()
         for word in devices:
             if word in input_sentence:
                 modified_sentence = replace_device(sentence, word)
 
                 input_sentence = keep_sentence_with_word(input_sentence, word)
                 input_sentence = input_sentence.translate(str.maketrans('', '', string.punctuation))
-                print(input_sentence)
                 similarity = (test_equivalence(modified_sentence, input_sentence))
-                print(similarity)
                 if similarity >= 0.5:
                     openapi = TuyaOpenAPI(API_ENDPOINT, ACCESS_ID, ACCESS_KEY)
                     openapi.connect()
@@ -226,8 +268,8 @@ while True:
                     if word == os.getenv("DEVICE_2"):
                         commands = {'commands': [{'code':'switch_1','value': False}]}	
                         openapi.post(os.getenv("DEVICE_2_ID"), commands)
-        else:
-            pass
+    else:
+        pass
     
     apps = [
     "youtube",
@@ -252,7 +294,7 @@ while True:
     ]
     
     sentence = "Activate [app]."
-    input_sentence = trans['text'].lower()
+    input_sentence = trans.lower()
     
     for word in apps:
         if word in input_sentence:
@@ -276,56 +318,93 @@ while True:
 
     extracted_dicts = [item for item, _ in results]
 
-    extracted_dicts_str = "\n".join(str(d) for d in extracted_dicts)
+    line1 = str(extracted_dicts[0])
+    line2 = str(extracted_dicts[1])
+    
+    # Specify the file name
+    file_name = "conversation.jsonl"
 
-    with open("conversation.jsonl", "r") as f:
-        lines = f.readlines()
+    # Initialize an empty list to store the lines
+    lines = []
 
-    # Overwrite the 'documents' list with the desired user-megumin pairs
-    documents = []
-    i = 0
-    while i < len(lines):
-        line_data = json.loads(lines[i].strip())
-        if line_data in extracted_dicts:
-            megumin_line = json.loads(lines[i + 1].strip())  # Assuming the next line is always Megumin's response
-            documents.append(line_data)
-            documents.append(megumin_line)
-            i += 2  # Skip the next line as it's already included
-        else:
-            i += 1
+    # Read the file and store the lines in the list
+    with open(file_name, 'r', encoding='UTF-8') as file:
+        lines = file.readlines()
+
+    # Check if there are at least 7 lines in the file (6 lines to read and 1 line to exclude)
+    if len(lines) >= 5:
+        # Extract the last 6 lines (excluding the last line) into a string
+        last_six_lines = ''.join(lines[-5:-1])
+
+        # Define a list of lines to check
+        lines_to_check = str(extracted_dicts)
+
+        # Iterate over the lines to check
+        for line_to_check in lines_to_check:
+            if line_to_check not in last_six_lines:
+                # If not found in last_six_lines, search for it in the entire file
+                found = False
+                for i, line in enumerate(lines):
+                    if line == line_to_check:
+                        # If found, append line_to_check and the line directly after it to the top of last_six_lines
+                        last_six_lines = line_to_check + lines[i + 1] + last_six_lines
+                        found = True
+                        break
+                
+                if not found:
+                    # If still not found, append only line_to_check at the top without the line directly after it
+                    last_six_lines = line_to_check + last_six_lines
+    else:
+        last_six_lines = lines
             
     now = datetime.now()
     date = now.strftime("%m/%d/%Y")
     time = now.strftime("%H:%M:%S")
 
-    prompt = lore + "\n" + "\n".join(str(json.dumps(doc, indent=None)) for doc in documents) + "\n" + str(new_line) + f"\n{{'role': 'Megumin', 'date': {date}, 'time': {time}, 'content': "
+    prompt = lore + "\n" + "\n" + str(last_six_lines) + str(new_line) + f'\n{{"role": "M.I.T.S.U.H.A.", "date": "{date}", "time": "{time}", "content": "'
+    prompt = str(prompt)
     
     # generate a response (takes several seconds)
-    response = LLM(prompt, echo=False, stream=False, stop=["{"])
+    input_ids = ExLlamatokenizer.encode(str(prompt))
+    sys.stdout.flush()
     
-    # display the response
-    response = response["choices"][0]["text"]
-    response = response.encode("ascii", "ignore")
-    response = response.decode()
-    response = response.strip(" '}")
-    response = response.replace('"', '')
-    print("Megumin: " + response)
+    generator.begin_stream(input_ids, settings)
+    
+    generated_tokens = 0
 
-    new_line = {"role": "Megumin", "date": date, "time": time, "content": response}
+    print("M.I.T.S.U.H.A.: ", end = "")
+    generated_text = ""  # Initialize an empty string to store the generated text
+    while True:
+        chunk, eos, _ = generator.stream()
+        generated_tokens += 1
+        generated_text += chunk  # Append each chunk to the generated_text variable
+        print (chunk, end = "")
+        sys.stdout.flush()
+        if eos or generated_tokens == max_new_tokens: break
+    print()
+    response = generated_text
+
+    new_line = {"role": "M.I.T.S.U.H.A.", "date": date, "time": time, "content": response}
     
-    with open(r"conversation.jsonl", "a") as c:
-        c.write("\n" + json.dumps(new_line))
+    with open(r"conversation.jsonl", "a", encoding='UTF-8') as c:
+        c.write("\n" + json.dumps(new_line, ensure_ascii=False))
         
     documents.append(new_line)
     db.save("conversation.pickle.gz")
-
-    response = response.replace("\n", " ")
-    response = response.replace('"', '\\"')
-    voice_vits(text=response, lang=LANGUAGE)
     
-    winsound.PlaySound(r"out.wav", winsound.SND_FILENAME)
+    voice_vits(text=response, lang="en")
+    
+    filename = 'out.wav'
+    # Extract data and sampling rate from file
+    data, fs = sf.read(filename, dtype='float32')
+    #sd.default.device = "Speakers (Realtek(R) Audio), MME"
+    #sd.default.device = "Headphones (AirPods Pro), MME"
+    sd.default.device = "CABLE Input (VB-Audio Virtual C, MME"
+    
+    sd.play(data, fs)
+    status = sd.wait()  # Wait until file is done playing
 
-    if check_goodbye(trans['text']):
+    if check_goodbye(trans):
         break
     else:
         continue
