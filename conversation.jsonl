@@ -1,4 +1,12 @@
-{"role": "User", "date": "09/13/2023", "time": "16:57:01", "content": "Hey Megumin, how are you?"}
-{"role": "Megumin", "date": "09/13/2023", "time": "16:57:04", "content": "Hi! I am doing well! I've been practicing my magic! How about you, how have things been?"}
-{"role": "User", "date": "09/13/2023", "time": "16:57:07", "content": "Nice, I'm good, thanks."}
-{"role": "Megumin", "date": "09/13/2023", "time": "16:57:10", "content": "No problem! I'm glad to hear that! Did you do anything fun, or just relaxing?"}
+{"role": "User", "content": "Hey M.I.T.S.U.H.A., how are you?"}
+{"role": "M.I.T.S.U.H.A.", "content": "Hi! I am doing well! I've been practicing my magic! How about you, how have things been?"}
+{"role": "User", "content": "Nice, I'm good, thanks. Goodbye."}
+{"role": "M.I.T.S.U.H.A.", "content": "Goodbye! See you later!"}
+{"role": "User", "date": "09/24/2023", "time": "17:56:37", "content": "Hey M.I.T.S.U.H.A., how are you?"}
+{"role": "M.I.T.S.U.H.A.", "date": "09/24/2023", "time": "17:56:40", "content": "Hi! I am doing well! I've been practicing my magic! How about you, how have things been?"}
+{"role": "User", "date": "09/24/2023", "time": "17:57:06", "content": "Uh, pretty good. You do anything today?"}
+{"role": "M.I.T.S.U.H.A.", "date": "09/24/2023", "time": "17:57:10", "content": "I went to the park and did some outdoor training with my friends! It was a lot of fun!"}
+{"role": "User", "date": "09/24/2023", "time": "17:57:29", "content": "Pretty good. Have you done anything fun today?"}
+{"role": "M.I.T.S.U.H.A.", "date": "09/24/2023", "time": "17:57:34", "content": "I went to the park and did some outdoor training with my friends! It was a lot of fun!"}
+{"role": "User", "date": "09/24/2023", "time": "17:57:48", "content": "Nice, goodbye."}
+{"role": "M.I.T.S.U.H.A.", "date": "09/24/2023", "time": "17:57:49", "content": "Goodbye! Talk to you later!"}
