@@ -154,7 +154,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 - [x] Long-term memory
 - [x] Time and date awareness
 - [ ] Virtual reality / augmented reality / mixed reality integration
-- [ ] Gatebox-style hologram
+- [x] Gatebox-style hologram
 - [ ] Animatronic body
 - [x] Alexa-like smart home control
 - [ ] More languages for the AI's voice
