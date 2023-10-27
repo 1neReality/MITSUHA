@@ -144,8 +144,9 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 5. Change the output to `CABLE Input (VB-Audio Virtual Cable)`
 6. Open VTube Studio > Settings icon > Scroll to Microphone Settings > Select Microphone > CABLE Output (VB-Audio Virtual Cable) > Person with settings icon > Scroll to Mouth Smile > Copy [these settings](https://imgur.com/a/pf4SCSC) > Scroll to Mouth Open > Copy [these settings](https://imgur.com/a/dvWLloq)
 7. Open `Sound Mixer Options` again and change the input for VTube Studio to `CABLE Output (VB-Audio Virtual Cable)`
-8. You're good to go! If you run into any issues, let me know on Discord and I can help you. Once again, it's https://discord.gg/PN48PZEXJS
-9. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically ends the program, otherwise you can just ctrl + c or close the window
+8. May need to restart computer if lip sync doesn't work
+9. You're good to go! If you run into any issues, let me know on Discord and I can help you. Once again, it's https://discord.gg/PN48PZEXJS
+10. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically ends the program, otherwise you can just ctrl + c or close the window
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
