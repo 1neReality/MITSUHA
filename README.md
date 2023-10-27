@@ -133,7 +133,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 8. Open VTube Studio > Settings icon > `Open Data Folder` and move the folder there > Person icon > c001_f_costume_kouma
 9. [Install VB Cable Audio Driver](https://vb-audio.com/Cable/), but don't set it as your audio devices just yet
 10. Open Control Panel > Sound and Hardware > Sound > Recording > find CABLE Output > right-click > Properties > Listen > Check `Listen to this device` > For `Playback through this device`, select your headphones or speakers
-(Optional) 11. Create a Tuya cloud project if you want to control your smart devices with the AI, for example, you can say 'Hey Megumin, can you turn on my LEDs' it's a bit complicated though and I'll probably make a video on it later because it's hard to explain through text, but here's a guide that should help you out: [https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8)
+11. (Optional) Create a Tuya cloud project if you want to control your smart devices with the AI, for example, you can say 'Hey Megumin, can you turn on my LEDs' it's a bit complicated though and I'll probably make a video on it later because it's hard to explain through text, but here's a guide that should help you out: [https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8](https://developer.tuya.com/en/docs/iot/device-control-practice?id=Kat1jdeul4uf8)
 
 
 ### Automatic Installation
@@ -143,8 +143,9 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 4. Run `OneReality.bat` and while it's running, open the start menu and type `Sound Mixer Options` and open it. You might have to wait and make Megumin say something first, but you should see Python in the App Volume list
 5. Change the output to `CABLE Input (VB-Audio Virtual Cable)`
 6. Open VTube Studio > Settings icon > Scroll to Microphone Settings > Select Microphone > CABLE Output (VB-Audio Virtual Cable) > Person with settings icon > Scroll to Mouth Smile > Copy [these settings](https://imgur.com/a/pf4SCSC) > Scroll to Mouth Open > Copy [these settings](https://imgur.com/a/dvWLloq)
-7. You're good to go! If you run into any issues, let me know on Discord and I can help you. Once again, it's https://discord.gg/PN48PZEXJS
-8. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically ends the program, otherwise you can just ctrl + c or close the window
+7. Open `Sound Mixer Options` again and change the input for VTube Studio to `CABLE Output (VB-Audio Virtual Cable)`
+8. You're good to go! If you run into any issues, let me know on Discord and I can help you. Once again, it's https://discord.gg/PN48PZEXJS
+9. When you want to stop, say goodbye, bye, or see you somewhere in your sentence because that automatically ends the program, otherwise you can just ctrl + c or close the window
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
