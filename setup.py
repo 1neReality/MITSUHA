@@ -28,7 +28,7 @@ cmd("python -m pip install cython")
 print('''Now please enter the ID (simply owner/name; e.g. TheBloke/dolphin-2.1-mistral-7B-GPTQ) of the GPTQ model on huggingface you want to download. If you don't know what this is, just answer "d" and the default model 
 dolphin-2.1-mistral-7B-GPTQ  will be downloaded.''')
 x = input("ID: ")
-y = input("Directory to download to; e.g. C:\Users\username\Downloads: ")
+y = input(r"Directory to download to; e.g. C:\Users\username\Downloads: ")
 if x == "d":
     snapshot_download(repo_id="TheBloke/dolphin-2.1-mistral-7B-GPTQ", local_dir=f"{y} + \dolphin-2.1-mistral-7B-GPTQ", local_dir_use_symlinks=False)
     llm_path = f"{y} + \dolphin-2.1-mistral-7B-GPTQ"
