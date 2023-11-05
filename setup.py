@@ -7,62 +7,39 @@ print('''
  \_____/|_| |_|\____)     |_|\____)_||_|_|_|\___)__  |
                                                (____/
         Bridging the real and virtual worlds
-                [Install Script]
+       [PROJECT M.I.T.S.U.H.A. Install Script]
 ''')
 
 import os
-
-os.system("pip install -r requirements.txt")
-
-x = input("Which OS are you on? [windows/linux/neither] ")
-if x == "windows":
-  y = input("Which GPU do you have? [Nvidia/AMD/CPU] ")
-  if y == "Nvidia":
-    print("Okay, installing pytorch with CUDA 11.7...")
-    os.system("pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117")
-    print("Sucess! Now installing llama-cpp-python with CuBLAS acceleration...")
-    os.system('set "CMAKE_ARGS=-Tv143,cuda=11.7 -DLLAMA_CUBLAS=on"')
-    os.system('python -m pip install llama-cpp-python --prefer-binary --no-cache-dir --extra-index-url=https://jllllll.github.io/llama-cpp-python-cuBLAS-wheels/AVX2/cu122')
-  if y == "AMD":
-    print("Okay, installing llama-cpp-python with CLBlast acceleration")
-    os.system('LLAMA_CLBLAST=1 CMAKE_ARGS="-DLLAMA_CLBLAST=on" FORCE_CMAKE=1 pip install llama-cpp-python --no-cache-dir')
-  if y == "CPU":
-    print("Okay, installing llama-cpp-python with OpenBLAS acceleration")
-    os.system('LLAMA_OPENBLAS=on pip install --force-reinstall --ignore-installed --no-cache-dir llama-cpp-python')
-    with open ("OneRealityMemory.py", "r") as f:
-      data = f.read()
-      data = data.replace(" n_gpu_layers=-1,", "")
-    
-    with open ("OneRealityMemory.py", "w") as f:
-      f.write(data)
-elif x == "linux":
-  print("Okay, installing pytorch with CUDA 11.7...")
-  os.system("pip3 install torch torchvision torchaudio")
-elif x == "neither":
-  print("If you're on Mac, unfortunately you cannot use GPU mode. Continuing with CPU...")
+os.system("python -m pip install -r requirements.txt")
+os.system("python -m pip install huggingface-hub")
 
 import requests
-import base64
-import time
+from huggingface_hub import snapshot_download
 
 cmd = os.system
 
-cmd("pip install cmake")
+cmd("python -m pip install cmake")
+cmd("python -m pip install git+https://github.com/m-bain/whisperx.git")
+cmd("python -m pip install pyopenjtalk -i https://pypi.artrajz.cn/simple --user")
 
-# run pip install in VITS-fast-fine-tuning directory
-# if an error occurs, try to run the print to console
-cmd("pip install cython")
+cmd("python -m pip install cython")
 
-print("Now please download an LLM model and put it in your OneReality folder. I suggest WizardLM https://huggingface.co/TheBloke/Wizard-Vicuna-13B-Uncensored-GGUF/blob/main/Wizard-Vicuna-13B-Uncensored.Q3_K_S.gguf which is what I use.")
-print("Press any key to continue after you downloaded the model.")
-def wait():
-    x = input("Have you downloaded a model and put it in the OneReality folder? [y/n] ")
-    if x == "y":
-        print("Okay, continuing...")
+print('''Now please enter the ID (simply owner/name; e.g. TheBloke/dolphin-2.1-mistral-7B-GPTQ) of the GPTQ model on huggingface you want to download. If you don't know what this is, just answer "d" and the default model 
+dolphin-2.1-mistral-7B-GPTQ  will be downloaded.''')
+x = input("ID: ")
+y = input("Directory to download to; e.g. C:\Users\username\Downloads: ")
+if x == "d":
+    snapshot_download(repo_id="TheBloke/dolphin-2.1-mistral-7B-GPTQ", local_dir=f"{y} + \dolphin-2.1-mistral-7B-GPTQ", local_dir_use_symlinks=False)
+    llm_path = f"{y} + \dolphin-2.1-mistral-7B-GPTQ"
+else:
+    index = x.find('/')
+    if index != -1:
+        x = x[index + 1:]
     else:
-        wait()
-wait()
-
+        x = x
+    snapshot_download(repo_id=x, local_dir=f"{y} + \ + {x}", local_dir_use_symlinks=False)
+    llm_path = f"{y} + \ + {x}"
 
 # URL of the file to download
 url = "https://huggingface.co/DogeLord/megumin-VITS/resolve/main/G_latest.pth"
@@ -85,66 +62,74 @@ else:
     print(f"Failed to download the file. HTTP status code: {response.status_code}")
 
 print("Do you want to use tuya? (Basically smart home control with the AI but a bit complicated to set up. Check the prerequisites on my README on my Github.) [y/n]")
-if input() == "n":
+t = input()
+if t == "n":
     print("Okay, Removing tuya from script...")
-  
     with open ("OneRealityMemory.py", "r") as f:
-      data = f.read()
-      data = data.replace("tuya = True", "tuya = False")
-    
+        data = f.read()
+        data = data.replace("tuya = True", "tuya = False")
     with open ("OneRealityMemory.py", "w") as f:
-      f.write(data)
+        f.write(data)
 else:
     print("Okay, continuing...")
     
-print("If you want to use tuya, please edit the OneRealityENMemory.py file! and set tuya = True")
-print("SETUP COMPLEATE! Please edit the env file!")
+print("If you ever change your mind about any of these options, please edit the .env file!")
 print("Note if you encounter any errors when running OneReality.bat, please read the error, it might say install this or that. if you can't figure it out, please contact me on discord: https://discord.gg/PN48PZEXJS")
 
 
 print("Would you like to go through the setup here or just exit? ONLY RUN THIS ONCE! [y/n]")
-print("If you want to change anything after the first time, please edit the .env file!")
+print("If you want to change anything after this, again, please edit the .env file!")
 if input() == "y":
     print("Okay, continuing...")
 else:
     exit()
 
-print("Leave any blank if you want to use the default value or if it doesn't apply to you, like if you aren't using Tuya.")
+print("Leave any blank if you want to use the default value")
 print("--------------------")
-print("Supported languages are: English, 한국어, 日本語, or 简体中文")
-language = input("What language do you want to use? ")
+print("Supported languages are: English, 한국어, 日本語, or 简体中文. Default is English")
+language = input("Language: ")
 print("--------------------")
-name = input("What is your name? ")
+print("What is your name? Default is User")
+name = input("Name: ")
 print("--------------------")
-print("Go here: https://platform.openai.com/account/api-keys and click 'Create new secret key'")
-api_key = input("What is your OpenAI API key? ")
+print("What WhisperX model do you want to use? Options are tiny, base, small, medium, large, and large-v2. Default is large-v2")
+whisperx = input("Model: ")
 print("--------------------")
-print("Go here: https://iot.tuya.com/cloud/basic?id=p1692112169571as54tf&region=AZ&toptab=project Access ID/Client ID is TUYA_ID and Access Secret/Client Secret is TUYA_SECRET")
-tuya_id = input("What is your TUYA_ID? ")
-tuya_secret = input("What is your TUYA_SECRET? ")
-print("In the link above, take note of the datacenter location and in this link: https://developer.tuya.com/en/docs/iot/api-request?id=Ka4a8uuo1j4t4#title-1-Endpoints find the corresponding endpoint link")
-endpoint = input("What is your endpoint link? [Leave blank for default] ")
-if endpoint == "":
-    endpoint = "https://openapi.tuyaus.com"
-print("--------------------")
-model = input("What is the name of your model file? [Leave blank for default] (wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin)")
-print("--------------------")
+if t != "n":
+    print("Go here: https://iot.tuya.com/cloud/basic Access ID/Client ID is TUYA_ID and Access Secret/Client Secret is TUYA_SECRET")
+    tuya_id = input("TUYA_ID: ")
+    tuya_secret = input("TUYA_SECRET: ")
+    print("In the link above, take note of the datacenter location and in this link: https://developer.tuya.com/en/docs/iot/api-request?id=Ka4a8uuo1j4t4#title-1-Endpoints find the corresponding endpoint link. Default is US West, https://openapi.tuyaus.com")
+    endpoint = input("Endpoint link: ")
+    if endpoint == "":
+        endpoint = "https://openapi.tuyaus.com"
+    print("--------------------")
+    print("Enter the name of the first device you want to control. Something easy to remember because this is what you will say to the AI")
+    device_1 = input("Device name: ")
+    print("Now enter the ID of the first device you want to control. You'll find this here: https://us.iot.tuya.com/cloud/basic?toptab=related&deviceTab=all")
+    device_1_id = input("Device ID: ")
+else:
+    pass
 
 print("To add Tuya devices, please edit the .env file!")
+print("Also, to add apps M.I.T.S.U.H.A. can open, just edit line 274 in OneRealityMemory.py!")
 
 # Now we need to write the data to the env file
 with open(".env", "r") as f:
     data = f.read()
-    data = data.replace("LANGUAGE", language)
-    data = data.replace("NAME", name)
-    data = data.replace("APIKEY", api_key)
-    data = data.replace("TUYAID", tuya_id)
-    data = data.replace("TUYASECRET", tuya_secret)
-    data = data.replace("https://openapi.tuyaus.com", endpoint)
-    if not model == "":
-        data = data.replace("wizardlm-1.0-uncensored-llama2-13b.ggmlv3.q3_K_S.bin", model)
+    data = data.replace("English", language)
+    data = data.replace("User", name)
+    data = data.replace("large-v2", whisperx)
+    data = data.replace("llm_path", llm_path)
+    data = data.replace("large-v2", whisperx)
+    if t != "n":
+        data = data.replace("tuya_id", tuya_id)
+        data = data.replace("tuya_secret", tuya_secret)
+        data = data.replace("https://openapi.tuyaus.com", endpoint)
+        data = data.replace("DEVICE_1", device_1)
+        data = data.replace("DEVICE_1_ID", device_1_id)
         
 with open(".env", "w") as f:
     f.write(data)
     
-print("SETUP COMPLEATE! Please edit the env file if you need to add Tuya devices or if you want to change anything else! Thanks for using OneReality!")
+print("SETUP COMPLETE! If you need help configuring how to control the samrt devices, hit me up on discord. https://discord.gg/PN48PZEXJS. Thanks for using OneReality: PROJECT M.I.T.S.U.H.A.!")
