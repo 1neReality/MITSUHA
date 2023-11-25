@@ -38,7 +38,7 @@
   <h3 align="center">OneReality</h3>
 
   <p align="center">
-    Bridging the real and virtual worlds
+    Redefining Reality
     <br />
     <br />
     <a href="https://youtu.be/kcMlo0uhmTU?si=dQCdP9QrHXsmzqoz">Demo video with 3D printed hologram box</a>
