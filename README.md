@@ -41,7 +41,7 @@
     Redefining Reality
     <br />
     <br />
-    <a href="https://youtu.be/kcMlo0uhmTU?si=dQCdP9QrHXsmzqoz">Demo video with 3D printed hologram box</a>
+    <a href="https://youtu.be/ieWZZzAFjsA">Demo video with 3D printed hologram box</a>
     ·
     <a href="https://github.com/DogeLord081/OneReality/issues">Report Bug</a>
     ·
@@ -79,7 +79,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Demo](https://github.com/DogeLord081/OneReality-README/blob/master/OneReality%20Ad%201.png)](https://youtu.be/kcMlo0uhmTU?si=dQCdP9QrHXsmzqoz)
+[![Demo](https://github.com/DogeLord081/OneReality-README/blob/master/OneReality%20Ad%201.png)](https://youtu.be/ieWZZzAFjsA)
 Click on image for demo video
 
 A virtual waifu / assistant that you can speak to through your mic and it'll speak back to you! Has many features such as:
@@ -119,7 +119,7 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 <!-- GETTING STARTED -->
 ## Getting Started
 
-[Video tutorial](https://youtu.be/w2pxHZ-GX5Y) Here's how you can set it up on Windows (probably similar steps on Mac and Linux but I haven't tested them).
+[Video tutorial](https://.be/w2pxHZ-GX5Y) Here's how you can set it up on Windows (probably similar steps on Mac and Linux but I haven't tested them).
 
 ### Prerequisites
 
@@ -190,7 +190,7 @@ Distributed under the GNU General Public License v3.0 License. See `LICENSE.txt`
 
 E-mail: danu0518@gmail.com
 
-YouTube: [https://www.youtube.com/@OneReality-tb4ut](https://www.youtube.com/@OneReality-tb4ut)
+be: [https://www.be.com/@OneReality-tb4ut](https://www.be.com/@OneReality-tb4ut)
 
 Discord: [https://discord.gg/PN48PZEXJS](https://discord.gg/PN48PZEXJS)
 
@@ -205,7 +205,7 @@ Project Link: [https://github.com/DogeLord081/OneReality](https://github.com/Dog
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [AI Waifu Vtuber](https://github.com/ardha27/AI-Waifu-Vtuber)
-* [SchizoDev](https://youtu.be/dKFnJCtcfMk)
+* [SchizoDev](https://.be/dKFnJCtcfMk)
 * xor
 * jaxfry
 
