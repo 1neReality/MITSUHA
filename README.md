@@ -119,8 +119,6 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 <!-- GETTING STARTED -->
 ## Getting Started
 
-[Video tutorial](https://.be/w2pxHZ-GX5Y) Here's how you can set it up on Windows (probably similar steps on Mac and Linux but I haven't tested them).
-
 ### Prerequisites
 
 1. [Install Python 3.10.11](https://www.python.org/downloads/release/python-31011/) and set it as an environment variable in PATH
