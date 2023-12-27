@@ -12,7 +12,6 @@ MarkupSafe==2.1.2
 torch
 unidecode
 six==1.16.0
-pyopenjtalk==0.3.2
 jamo
 pypinyin
 jieba
@@ -47,4 +46,8 @@ num2words
 mecab-python3
 unidic-lite
 py7zr
+hyperdb-python
 tqdm
+sentence-transformers
+python-dotenv
+exllamav2
