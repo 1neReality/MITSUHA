@@ -39,7 +39,7 @@ else:
     else:
         x = x
     snapshot_download(repo_id=x, local_dir=f"{y} + \ + {x}", local_dir_use_symlinks=False)
-    llm_path = f"{y} + \ + {x}"
+    llm_path = str(y + r"\dolphin-2.1-mistral-7B-GPTQ")
 
 # URL of the file to download
 url = "https://huggingface.co/DogeLord/megumin-VITS/resolve/main/G_latest.pth"
