@@ -31,7 +31,7 @@ x = input("ID: ")
 y = input(r"Directory to download to; e.g. C:\Users\username\Downloads: ")
 if x == "d":
     snapshot_download(repo_id="TheBloke/dolphin-2.1-mistral-7B-GPTQ", local_dir=f"{y} + \dolphin-2.1-mistral-7B-GPTQ", local_dir_use_symlinks=False)
-    llm_path = f"{y} + \dolphin-2.1-mistral-7B-GPTQ"
+    llm_path = y + "\dolphin-2.1-mistral-7B-GPTQ"
 else:
     index = x.find('/')
     if index != -1:
