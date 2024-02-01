@@ -188,7 +188,7 @@ Distributed under the GNU General Public License v3.0 License. See `LICENSE.txt`
 
 E-mail: danu0518@gmail.com
 
-be: [https://www.be.com/@OneReality-tb4ut](https://www.be.com/@OneReality-tb4ut)
+YouTube: [https://www.be.com/@OneReality-tb4ut](https://www.be.com/@OneReality-tb4ut)
 
 Discord: [https://discord.gg/PN48PZEXJS](https://discord.gg/PN48PZEXJS)
 
