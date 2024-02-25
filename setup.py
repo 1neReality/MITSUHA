@@ -1,4 +1,9 @@
-print('''
+import time
+import requests
+from huggingface_hub import snapshot_download
+
+print(
+    """
   _____              ______             _ _           
  / ___ \            (_____ \           | (_)_         
 | |   | |____   ____ _____) ) ____ ____| |_| |_ _   _ 
@@ -6,40 +11,55 @@ print('''
 | |___| | | | ( (/ /      | ( (/ ( ( | | | | |_| |_| |
  \_____/|_| |_|\____)     |_|\____)_||_|_|_|\___)__  |
                                                (____/
-        Bridging the real and virtual worlds
-       [PROJECT M.I.T.S.U.H.A. Install Script]
-''')
+"""
+)
+
+
+def typewriter_effect(text, delay=0.03):
+    for char in text:
+        print(char, end="", flush=True)
+        time.sleep(delay)
+
+
+text = """        Bridging the real and virtual worlds
+{:^50}
+""".format(
+    "[PROJECT M.I.T.S.U.H.A. Install Script]"
+)
+
+typewriter_effect(text)
 
 import os
-os.system("python -m pip install -r requirements.txt")
-os.system("python -m pip install huggingface-hub")
-
-import requests
-from huggingface_hub import snapshot_download
-
 cmd = os.system
+cmd("python -m pip install pipenv")
+print("Only Windows + Nvidia has been officially tested. Linux + Nvidia should work, but it is untested. Mac and other GPUs are not currently supported. Would you like to continue? [y/n]")
+w = input()
+if w == "y":
+    print("Okay, installing pytorch...")
+    cmd("python -m pipenv run pip install -U torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121")
+else:
+    exit()
+print("Installing hugging-face-hub...")
+cmd("python -m pip install huggingface-hub")
 
-cmd("python -m pip install cmake")
-cmd("python -m pip install git+https://github.com/m-bain/whisperx.git")
-cmd("python -m pip install pyopenjtalk -i https://pypi.artrajz.cn/simple --user")
-
-cmd("python -m pip install cython")
+print("Installing dependencies...")
+cmd("pipenv install --ignore-pipfile")
 
 print('''Now please enter the ID (simply owner/name; e.g. TheBloke/dolphin-2.1-mistral-7B-GPTQ) of the GPTQ model on huggingface you want to download. If you don't know what this is, just answer "d" and the default model 
 dolphin-2.1-mistral-7B-GPTQ  will be downloaded.''')
 x = input("ID: ")
 y = input(r"Directory to download to; e.g. C:\Users\username\Downloads: ")
 if x == "d":
-    snapshot_download(repo_id="TheBloke/dolphin-2.1-mistral-7B-GPTQ", local_dir=f"{y} + \dolphin-2.1-mistral-7B-GPTQ", local_dir_use_symlinks=False)
-    llm_path = y + "\dolphin-2.1-mistral-7B-GPTQ"
+    snapshot_download(repo_id="TheBloke/dolphin-2.1-mistral-7B-GPTQ", local_dir=fr"{y}", local_dir_use_symlinks=False)
+    llm_path = fr"{y} + \dolphin-2.1-mistral-7B-GPTQ"
 else:
     index = x.find('/')
     if index != -1:
         x = x[index + 1:]
     else:
         x = x
-    snapshot_download(repo_id=x, local_dir=f"{y} + \ + {x}", local_dir_use_symlinks=False)
-    llm_path = str(y + r"\dolphin-2.1-mistral-7B-GPTQ")
+    snapshot_download(repo_id=x, local_dir=fr"{y}\{x}", local_dir_use_symlinks=False)
+    llm_path = y
 
 # URL of the file to download
 url = "https://huggingface.co/DogeLord/megumin-VITS/resolve/main/G_latest.pth"
@@ -53,7 +73,8 @@ response = requests.get(url, stream=True)
 # Check if the request was successful (HTTP status code 200)
 if response.status_code == 200:
     # Open a local file for binary writing
-    with open("vits-simple-api-onereality/Model/g/" + local_filename, 'wb') as file:
+    print("Downloading TTS model...")
+    with open(r"vits-simple-api-onereality/Model/g/" + local_filename, 'wb') as file:
         # Iterate over the content in chunks and write it to the local file
         for chunk in response.iter_content(chunk_size=8192):
             file.write(chunk)
