@@ -79,6 +79,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+!Please don't attempt to install this right now, the project is undergoing major changes and exllamav2 likely will throw many errors!
+
 [![Demo](https://github.com/DogeLord081/OneReality-README/blob/master/Thumbnail.png)](https://youtu.be/ieWZZzAFjsA)
 Click on image for demo video
 
