@@ -1,3 +1,4 @@
+## February 2025: MASSIVE UPDATES COMING INCLUDING FULLY COMPILED EXE INSTALL THIS PROJECT HAS NOT BEEN ABANDONED IVE JUST BEEN REALLY BUSY!
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
 <!--
@@ -86,6 +87,7 @@ Click on image for demo video
 
 A virtual waifu / assistant that you can speak to through your mic and it'll speak back to you! Has many features such as:
 
+* Can be used in virtual reality, with a 3d hologram box, or on your computer
 * You can speak to her with a mic
 * It can speak back to you
 * Has short-term memory and long-term memory
@@ -155,11 +157,11 @@ First, the Python package SpeechRecognition recognizes what you say into your mi
 
 - [x] Long-term memory
 - [x] Time and date awareness
-- [ ] Virtual reality / augmented reality / mixed reality integration
+- [x] Virtual reality / augmented reality / mixed reality integration
 - [x] Gatebox-style hologram
 - [ ] Animatronic body
 - [x] Alexa-like smart home control
-- [ ] More languages for the AI's voice
+- [x] More languages for the AI's voice
   - [x] Japanese
   - [x] English
   - [x] Korean
